@@ -78,7 +78,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `munisanborja`.`CostoEfectividad` (
   `codigo` INT NOT NULL AUTO_INCREMENT,
   `ratio` DOUBLE NULL,
-  `unidadMedida` DOUBLE NULL,
+  `unidadMedida` VARCHAR(200) NULL,
   PRIMARY KEY (`codigo`))
 ENGINE = InnoDB;
 
