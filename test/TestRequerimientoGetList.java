@@ -1,7 +1,9 @@
 
 import com.munisanborja.sys.dao.RequerimientoDao;
 import com.munisanborja.sys.model.entities.Requerimiento;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -9,7 +11,6 @@ import java.util.List;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Eric
@@ -22,14 +23,24 @@ public class TestRequerimientoGetList {
     public static void main(String[] args) {
         // TODO code application logic here
         List<Requerimiento> lr = new ArrayList<Requerimiento>();
-        
+
         RequerimientoDao rd = new RequerimientoDao();
-        
-        lr = rd.listarRequerimiento();
-        for(Requerimiento r : lr){
-            System.out.println(r.getNombre());
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String sfechaInicio = "2018-01-01";
+        String sfechaFinal = "2018-01-31";
+        try {
+            Date fechaInicio = df.parse(sfechaInicio);
+            Date fechaFinal = df.parse(sfechaFinal);
+
+            lr = rd.listarRequerimiento(fechaInicio, fechaFinal);
+            for (Requerimiento r : lr) {
+                System.out.println(r.getNombre());
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        
+
     }
-    
+
 }

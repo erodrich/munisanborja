@@ -6,6 +6,7 @@
 package com.munisanborja.sys.dao;
 
 import com.munisanborja.sys.model.entities.Requerimiento;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public interface RequerimientoInterface {
     public List<Requerimiento> listarRequerimiento();
+    public List<Requerimiento> listarRequerimiento(Date fechaInicio, Date fechaFinal);
     public Requerimiento get(Integer id);
     public void create(Requerimiento c);
     public void update(Requerimiento c);
