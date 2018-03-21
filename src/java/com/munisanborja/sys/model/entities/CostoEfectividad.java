@@ -22,7 +22,7 @@ public class CostoEfectividad {
     
     private Double ratio;
     
-    private Double unidadMedida;
+    private String unidadMedida;
 
     /**
      * @return the codigo
@@ -55,14 +55,14 @@ public class CostoEfectividad {
     /**
      * @return the unidadMedida
      */
-    public Double getUnidadMedida() {
+    public String getUnidadMedida() {
         return unidadMedida;
     }
 
     /**
      * @param unidadMedida the unidadMedida to set
      */
-    public void setUnidadMedida(Double unidadMedida) {
+    public void setUnidadMedida(String unidadMedida) {
         this.unidadMedida = unidadMedida;
     }
     

@@ -52,11 +52,24 @@ public class RequerimientoDao implements RequerimientoInterface {
 
     @Override
     public Requerimiento get(Integer id) {
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        Requerimiento rd = (Requerimiento) session.get(Requerimiento.class, id);
-        session.getTransaction().commit();
-        return rd;
+        Requerimiento rd;
+
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            rd = (Requerimiento) session.get(Requerimiento.class, id);
+            session.getTransaction().commit();
+            return rd;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(session.isOpen()){
+                session.close();
+            HibernateUtil.getSessionFactory().close();
+            }
+        }
+        return null;
+
     }
 
 }
