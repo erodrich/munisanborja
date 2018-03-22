@@ -5,17 +5,22 @@
  */
 package com.munisanborja.sys.controller;
 
+import com.munisanborja.sys.dao.RequerimientoDao;
 import com.munisanborja.sys.model.bean.BeanBusquedaRequerimiento;
+import com.munisanborja.sys.model.entities.Requerimiento;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,19 +30,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class RequerimientoController {
+    
+
+    RequerimientoDao rd = new RequerimientoDao();
 
     @RequestMapping(value = "/listarRequerimiento.htm", method = RequestMethod.GET)
     public String listarRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("Pruebaaaaaaa");
-        //BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
-        //model.addAttribute("busquedareq", busquedareq);
+        //System.out.println("Pruebaaaaaaa");
+        BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
+        model.addAttribute("busquedareq", busquedareq);
 
         return "listarRequerimiento";
 
     }
 
-    @RequestMapping(value = "/buscarRequerimiento", method = RequestMethod.POST)
+    @RequestMapping(value = "/buscarRequerimiento.htm", method = RequestMethod.POST)
     public String buscarRequerimiento(@ModelAttribute("busquedareq") BeanBusquedaRequerimiento busquedareq,
             BindingResult result, Model model) {
 
@@ -50,14 +58,11 @@ public class RequerimientoController {
             if (busquedareq.getFechaFinal().getTime() < busquedareq.getFechaInicio().getTime()) {
                 model.addAttribute("errorPIP", "El rango final debe ser superior al rango inicial");
             } else {
-
-                //List<BeanInformePresupuestal> list = informepresupuestaldao.getInformesPresupuestales(df.format(busquedapip.getFechaInicio()), df.format(busquedapip.getFechaFinal()));
-                //if (list.isEmpty()) {
-                //    model.addAttribute("errorPIP", "No se encontraron registros para el rango de fechas establecido.");
-                //}
+                
+                List<Requerimiento> list = rd.listarRequerimiento(df.format(busquedareq.getFechaInicio()),df.format(busquedareq.getFechaFinal()));
                 model.addAttribute("busquedareq", busquedareq);
 
-                //model.addAttribute("list", list);             
+                model.addAttribute("list", list);             
             }
 
         }
@@ -65,4 +70,18 @@ public class RequerimientoController {
         return "listarRequerimiento";
 
     }
+    
+    @RequestMapping(value = "/detalleRequerimiento/{codigo}.htm", method = RequestMethod.GET)
+    public String detalleRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response, @PathVariable String codigo) {
+
+        Requerimiento requerimiento = rd.get(Integer.parseInt(codigo));
+
+        model.addAttribute("requerimiento", requerimiento);
+        
+        //BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
+        //model.addAttribute("busquedareq", busquedareq);
+
+        return "detalleRequerimiento";
+
+    } 
 }

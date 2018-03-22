@@ -7,6 +7,7 @@ package com.munisanborja.sys.dao;
 
 import com.munisanborja.sys.HibernateUtil;
 import com.munisanborja.sys.model.entities.Requerimiento;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -86,5 +87,23 @@ public class RequerimientoDao implements RequerimientoInterface {
         return cr.list();
         
     }
+    
+    @Override
+    public List<Requerimiento> listarRequerimiento(String fechaInicio, String fechaFinal) {
+        
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Criteria cr = session.createCriteria(Requerimiento.class)
+                    .add(Restrictions.between("fechaCreacion", df.parse(fechaInicio), df.parse(fechaFinal)))
+                    .addOrder(Order.desc("fechaCreacion"));
+            return cr.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

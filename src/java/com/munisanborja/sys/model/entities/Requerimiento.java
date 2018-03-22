@@ -26,6 +26,8 @@ public class Requerimiento {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int codigo;
     
+    private String identificador;
+    
     private String nombre;
     
     private String objetivo;
@@ -404,6 +406,20 @@ public class Requerimiento {
      */
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    /**
+     * @return the identificador
+     */
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    /**
+     * @param identificador the identificador to set
+     */
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
     
     

@@ -12,7 +12,7 @@
                         <!-- Dropdown -->
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                Proyectos de Pre-Inversi?n
+                                Proyectos de Pre-Inversión
                             </a>
                             <div class="dropdown-menu">                             
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/listarRequerimiento.htm">Listar Requerimientos de Proyectos</a>
@@ -22,7 +22,7 @@
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                Atenci?n al Ciudadano
+                                Atención al Ciudadano
                             </a>
                             <div class="dropdown-menu">                             
                                 <a class="dropdown-item" href="#">Link 1</a>
@@ -33,7 +33,7 @@
                         
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                Juventud, Recreaci?n y Deportes
+                                Juventud, Recreación y Deportes
                             </a>
                             <div class="dropdown-menu">                             
                                 <a class="dropdown-item" href="#">Link 1</a>
