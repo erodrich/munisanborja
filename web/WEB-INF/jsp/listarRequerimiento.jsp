@@ -56,7 +56,7 @@
                         </thead>
                     <c:forEach var="epip" items="${list}">
                         <tr style="text-align: center;">
-                            <td><a href="/munisanborja/detalleRequerimiento/${epip.codigo}.htm">${epip.codigo}</a></td>
+                            <td><a href="/munisanborja_tp3/detalleRequerimiento/${epip.codigo}.htm">${epip.identificador}</a></td>
                             <td>${epip.nombre}</td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.montoInversion.precioMercado}" /></td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.costoOperacion}" /></td>

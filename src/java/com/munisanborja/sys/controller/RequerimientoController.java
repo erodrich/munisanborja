@@ -15,7 +15,6 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 
 /**
  *
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class RequerimientoController {
-    
 
     RequerimientoDao rd = new RequerimientoDao();
 
@@ -44,10 +44,23 @@ public class RequerimientoController {
         return "listarRequerimiento";
 
     }
+    
+    @RequestMapping(value = "/validarRequerimiento.htm", method = RequestMethod.GET)
+    public String validarRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //System.out.println("Pruebaaaaaaa");
+        BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
+        model.addAttribute("busquedareq", busquedareq);
+
+        return "validarRequerimiento";
+
+    }
 
     @RequestMapping(value = "/buscarRequerimiento.htm", method = RequestMethod.POST)
     public String buscarRequerimiento(@ModelAttribute("busquedareq") BeanBusquedaRequerimiento busquedareq,
             BindingResult result, Model model) {
+
+        rd = new RequerimientoDao();
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -58,11 +71,11 @@ public class RequerimientoController {
             if (busquedareq.getFechaFinal().getTime() < busquedareq.getFechaInicio().getTime()) {
                 model.addAttribute("errorPIP", "El rango final debe ser superior al rango inicial");
             } else {
-                
-                List<Requerimiento> list = rd.listarRequerimiento(df.format(busquedareq.getFechaInicio()),df.format(busquedareq.getFechaFinal()));
+
+                List<Requerimiento> list = rd.listarRequerimiento(df.format(busquedareq.getFechaInicio()), df.format(busquedareq.getFechaFinal()));
                 model.addAttribute("busquedareq", busquedareq);
 
-                model.addAttribute("list", list);             
+                model.addAttribute("list", list);
             }
 
         }
@@ -70,18 +83,17 @@ public class RequerimientoController {
         return "listarRequerimiento";
 
     }
-    
+
     @RequestMapping(value = "/detalleRequerimiento/{codigo}.htm", method = RequestMethod.GET)
     public String detalleRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response, @PathVariable String codigo) {
-
+        rd = new RequerimientoDao();
         Requerimiento requerimiento = rd.get(Integer.parseInt(codigo));
 
         model.addAttribute("requerimiento", requerimiento);
-        
+
         //BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
         //model.addAttribute("busquedareq", busquedareq);
-
         return "detalleRequerimiento";
 
-    } 
+    }
 }
