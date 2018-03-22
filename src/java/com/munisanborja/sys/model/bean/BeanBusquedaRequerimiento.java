@@ -23,9 +23,6 @@ public class BeanBusquedaRequerimiento {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date fechaFinal;
 
-    @NotNull
-    private String identificador;
-
     public Date getFechaInicio() {
         return fechaInicio;
     }
@@ -40,19 +37,6 @@ public class BeanBusquedaRequerimiento {
 
     public void setFechaFinal(Date fechaFinal) {
         this.fechaFinal = fechaFinal;
-
-    }
-    /**
-     * @return the identificador
-     */
-    public String getIdentificador() {
-        return identificador;
     }
 
-    /**
-     * @param identificador the identificador to set
-     */
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
 }

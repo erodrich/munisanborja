@@ -47,8 +47,9 @@
                     <table class="table table-striped" style="font-size: smaller; padding-left: 10px; padding-right: 10px;">
                         <thead>
                             <tr style="text-align: center;">
-                                <th>Codigo</th>
+                                <th>Identificador</th>
                                 <th>Nombre</th>
+                                <th>Estado</th>
                                 <th>Monto Inversión</th>
                                 <th>Costo Operación</th>
                                 <th>Ubicación</th>
@@ -58,6 +59,7 @@
                         <tr style="text-align: center;">
                             <td><a href="/munisanborja_tp3/detalleRequerimiento/${epip.codigo}.htm">${epip.identificador}</a></td>
                             <td>${epip.nombre}</td>
+                            <td>${epip.estadoTramite.nombre}</td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.montoInversion.precioMercado}" /></td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.costoOperacion}" /></td>
                             <td>${fn:toUpperCase(epip.ubicacion.departamento)}</td>

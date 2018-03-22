@@ -56,7 +56,19 @@ public class RequerimientoDao implements RequerimientoInterface {
         session.delete(c);
         session.getTransaction().commit();
     }
-
+    
+    @Override
+    public Requerimiento get(String id) {
+        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
+        ss.beginTransaction();
+        Criteria cr = session.createCriteria(Requerimiento.class)
+                .add(Restrictions.eq("identificador", id));
+        
+        Requerimiento rd = (Requerimiento) cr.uniqueResult();
+        ss.getTransaction().commit();
+        return rd;
+    }
+    
     @Override
     public Requerimiento get(Integer id) {
         Session ss = HibernateUtil.getSessionFactory().getCurrentSession();

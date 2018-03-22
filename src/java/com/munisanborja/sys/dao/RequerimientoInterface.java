@@ -18,6 +18,7 @@ public interface RequerimientoInterface {
     public List<Requerimiento> listarRequerimiento(Date fechaInicio, Date fechaFinal);
     public List<Requerimiento> listarRequerimiento(String fechaInicio, String fechaFinal);
     public Requerimiento get(Integer id);
+    public Requerimiento get(String id);
     public void create(Requerimiento c);
     public void update(Requerimiento c);
     public void delete(Requerimiento c);

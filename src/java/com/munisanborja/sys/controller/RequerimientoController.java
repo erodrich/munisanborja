@@ -7,6 +7,7 @@ package com.munisanborja.sys.controller;
 
 import com.munisanborja.sys.dao.RequerimientoDao;
 import com.munisanborja.sys.model.bean.BeanBusquedaRequerimiento;
+import com.munisanborja.sys.model.bean.BeanBusquedaRequerimientoIdentificador;
 import com.munisanborja.sys.model.entities.Requerimiento;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -49,8 +50,26 @@ public class RequerimientoController {
     public String validarRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //System.out.println("Pruebaaaaaaa");
-        BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
+        BeanBusquedaRequerimientoIdentificador busquedareq = new BeanBusquedaRequerimientoIdentificador();
         model.addAttribute("busquedareq", busquedareq);
+
+        return "validarRequerimiento";
+
+    }
+    
+    @RequestMapping(value = "/buscarRequerimientoIdentificador.htm", method = RequestMethod.POST)
+    public String buscarRequerimientoIdentificador(@ModelAttribute("busquedareq") BeanBusquedaRequerimientoIdentificador busquedareq,
+            BindingResult result, Model model) {
+
+        rd = new RequerimientoDao();
+        
+        if(!busquedareq.getIdentificador().isEmpty()){
+            Requerimiento r = rd.get(busquedareq.getIdentificador());
+            model.addAttribute("requerimiento", r);
+        } else {
+            model.addAttribute("errorPIP", "El identificador no puede estar vacio");
+        }
+        
 
         return "validarRequerimiento";
 
@@ -59,8 +78,6 @@ public class RequerimientoController {
     @RequestMapping(value = "/buscarRequerimiento.htm", method = RequestMethod.POST)
     public String buscarRequerimiento(@ModelAttribute("busquedareq") BeanBusquedaRequerimiento busquedareq,
             BindingResult result, Model model) {
-
-        rd = new RequerimientoDao();
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -96,4 +113,18 @@ public class RequerimientoController {
         return "detalleRequerimiento";
 
     }
+    @RequestMapping(value = "/evaluacionRequerimiento/{codigo}.htm", method = RequestMethod.GET)
+    public String evaluacionRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response, @PathVariable String codigo) {
+        rd = new RequerimientoDao();
+        Requerimiento requerimiento = rd.get(Integer.parseInt(codigo));
+
+        model.addAttribute("requerimiento", requerimiento);
+
+        //BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
+        //model.addAttribute("busquedareq", busquedareq);
+        return "detalleRequerimiento";
+
+    }
+    
+    
 }

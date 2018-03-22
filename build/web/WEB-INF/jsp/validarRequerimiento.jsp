@@ -35,38 +35,37 @@
                 </div>
             </c:if>            
 
-            <form:form action="validarRequerimiento.htm" method="POST" modelAttribute="busquedareq">
+            <form:form action="buscarRequerimientoIdentificador.htm" method="POST" modelAttribute="busquedareq">
 
                 <div class="input-group">
                     <label for="identificador" class="col-form-label">Identificador:&nbsp;&nbsp;&nbsp;</label>
                     <form:input type="text" class="form-control-sm" path="identificador" placeholder="RXXXXX" />
                     <form:errors path="identificador" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
-                    
-                    <button type="submit" class="btn btn-primary  btn-sm">Buscar</button>
-                </div>
 
-                <br/>
-                <table class="table table-striped" style="font-size: smaller; padding-left: 10px; padding-right: 10px;">
-                    <thead>
+                        <button type="submit" class="btn btn-primary  btn-sm">Buscar</button>
+                    </div>
+
+                    <br/>
+                    <table class="table table-striped" style="font-size: smaller; padding-left: 10px; padding-right: 10px;">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th>Identificador</th>
+                                <th>Nombre</th>
+                                <th>Estado</th>
+                                <th>Monto Inversión</th>
+                                <th>Costo Operación</th>
+                                <th>Ubicación</th>
+                            </tr>
+                        </thead>
                         <tr style="text-align: center;">
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Monto Inversión</th>
-                            <th>Costo Operación</th>
-                            <th>Ubicación</th>
-                        </tr>
-                    </thead>
-                    <c:forEach var="epip" items="${list}">
-                        <tr style="text-align: center;">
-                            <td><a href="/munisanborja_tp3/detalleRequerimiento/${epip.codigo}.htm">${epip.identificador}</a></td>
-                            <td>${epip.nombre}</td>
-                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.montoInversion.precioMercado}" /></td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.costoOperacion}" /></td>
-                        <td>${fn:toUpperCase(epip.ubicacion.departamento)}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </form:form>
+                            <td><a href="${pageContext.request.contextPath}/evaluacionRequerimiento/${requerimiento.codigo}.htm">${requerimiento.identificador}</a></td>
+                        <td>${requerimiento.nombre}</td>
+                        <td>${requerimiento.estadoTramite.nombre}</td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${requerimiento.montoInversion.precioMercado}" /></td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${requerimiento.costoOperacion}" /></td>
+                        <td>${fn:toUpperCase(requerimiento.ubicacion.departamento)}</td>
+                    </tr>
+                </form:form>
 
         </div>
     </body>
