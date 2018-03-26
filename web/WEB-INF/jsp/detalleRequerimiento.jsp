@@ -14,7 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>       
 
-        <title>Sistema de Gestión Municipal - Versión 1.1</title>
+        <title>Detalle - Sistema de Gestión Municipal - Versión 1.1</title>
     </head>
     <body>
         <%@include file="header.jsp" %>
@@ -104,7 +104,7 @@
                                 <input type="text" class="form-control form-control-sm" id="costoMantenimiento" disabled="true" value="${requerimiento.costoMantenimiento}" />
                             </div>
                             
-
+                            <button type="button" class="btn btn-primary btn-sm" onclick="javascript:history.back();">Retornar</button>
 
                             <div class="clearfix"></div>
                         </div>

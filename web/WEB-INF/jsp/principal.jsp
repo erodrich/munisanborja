@@ -15,7 +15,7 @@
     <body>
         <%@include file="header.jsp" %>
         <br/><br/>
-    <center>Pruebaaaaaaaaaa</center>
+        <center><img src="images/muni_sanborja.jpg" alt="" width="800"/></center>
 </body>
 </html>
 

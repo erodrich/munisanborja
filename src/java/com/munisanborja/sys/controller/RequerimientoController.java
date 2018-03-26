@@ -9,6 +9,7 @@ import com.munisanborja.sys.dao.RequerimientoDao;
 import com.munisanborja.sys.model.bean.BeanBusquedaRequerimiento;
 import com.munisanborja.sys.model.bean.BeanBusquedaRequerimientoIdentificador;
 import com.munisanborja.sys.model.entities.Requerimiento;
+import com.munisanborja.sys.model.logic.GestionRequerimiento;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -113,6 +114,7 @@ public class RequerimientoController {
         return "detalleRequerimiento";
 
     }
+    
     @RequestMapping(value = "/evaluacionRequerimiento/{codigo}.htm", method = RequestMethod.GET)
     public String evaluacionRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response, @PathVariable String codigo) {
         rd = new RequerimientoDao();
@@ -122,9 +124,29 @@ public class RequerimientoController {
 
         //BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
         //model.addAttribute("busquedareq", busquedareq);
-        return "detalleRequerimiento";
-
+        return "evaluacionRequerimiento";
     }
     
+    @RequestMapping(value = "/resumenEvaluacion/{codigo}.htm", method = RequestMethod.GET)
+    public String resumenEvaluacion(Model model, HttpServletRequest request, HttpServletResponse response, @PathVariable String codigo) {
+
+        rd = new RequerimientoDao();
+        Requerimiento requerimiento = rd.get(Integer.parseInt(codigo));
+        
+        GestionRequerimiento gr = new GestionRequerimiento();
+        gr.validarRequerimiento(requerimiento);
+            
+        model.addAttribute("requerimiento", requerimiento);
+        model.addAttribute("gr", gr);
+        
+        return "resumenEvaluacion";
+
+    }    
+    
+    
+    @RequestMapping(value = "/cancel.htm", method = RequestMethod.GET)
+    public String cancelEstudioPIP() {
+        return "redirect:/listarRequerimiento.htm";
+    }    
     
 }
