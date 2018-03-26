@@ -12,11 +12,15 @@
     <property name="hibernate.current_session_context_class">thread</property>
     
     <mapping class="com.munisanborja.sys.model.entities.EstadoTramite" />
+    <mapping class="com.munisanborja.sys.model.entities.EstadoViabilidad" />
     <mapping class="com.munisanborja.sys.model.entities.CostoBeneficio" />
     <mapping class="com.munisanborja.sys.model.entities.CostoEfectividad" />
     <mapping class="com.munisanborja.sys.model.entities.MontoInversionTotal" />
     <mapping class="com.munisanborja.sys.model.entities.Requerimiento" />
     <mapping class="com.munisanborja.sys.model.entities.Ubicacion" />
     <mapping class="com.munisanborja.sys.model.entities.UnidadFormuladora" />
+    <mapping class="com.munisanborja.sys.model.entities.ProyectoPreInversion" />
+    <mapping class="com.munisanborja.sys.model.entities.UbicacionValida" />
+    <mapping class="com.munisanborja.sys.model.entities.UnidadEjecutoraValida" />
   </session-factory>
 </hibernate-configuration>

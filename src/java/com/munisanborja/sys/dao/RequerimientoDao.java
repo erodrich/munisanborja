@@ -76,35 +76,7 @@ public class RequerimientoDao implements RequerimientoInterface {
         Requerimiento rd = (Requerimiento) session.get(Requerimiento.class, id);
         ss.getTransaction().commit();
         return rd;
-        /*
-        if (!session.isOpen()) {
-            session = HibernateUtil.getSessionFactory().openSession();
-        } else {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-        }
-        Transaction tx = session.beginTransaction();
-        Requerimiento rd = (Requerimiento) session.get(Requerimiento.class, id);
-        tx.commit();
-        session.close();
-        return rd;
-
         
-        try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-            session.beginTransaction();
-            rd = (Requerimiento) session.get(Requerimiento.class, id);
-            session.getTransaction().commit();
-            return rd;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session.isOpen()) {
-                session.close();
-                //HibernateUtil.getSessionFactory().close();
-            }
-        }
-        return null;
-         */
     }
 
     @Override
@@ -131,29 +103,7 @@ public class RequerimientoDao implements RequerimientoInterface {
 
     @Override
     public List<Requerimiento> listarRequerimiento(String fechaInicio, String fechaFinal) {
-        /*
-        try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-            session.beginTransaction();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                Criteria cr = session.createCriteria(Requerimiento.class)
-                        .add(Restrictions.between("fechaCreacion", df.parse(fechaInicio), df.parse(fechaFinal)))
-                        .addOrder(Order.desc("fechaCreacion"));
-                return cr.list();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session.isOpen()) {
-                session.close();
-                HibernateUtil.getSessionFactory().close();
-            }
-        }
-        return null;
-         */
+        
         List<Requerimiento> list = null;
         Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = ss.beginTransaction();
@@ -183,22 +133,7 @@ public class RequerimientoDao implements RequerimientoInterface {
             }
         }
         return list;
-        /*
-        List<Requerimiento> list = new ArrayList<>();
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Criteria cr = session.createCriteria(Requerimiento.class)
-                    .add(Restrictions.between("fechaCreacion", df.parse(fechaInicio), df.parse(fechaFinal)))
-                    .addOrder(Order.desc("fechaCreacion"));
-            list = cr.list();
-            //session.getTransaction().commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-         */
+        
     }
 
 }
