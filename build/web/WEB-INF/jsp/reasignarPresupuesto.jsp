@@ -45,26 +45,48 @@
                     </div>
 
                     <br/>
-                    <table class="table table-striped" style="font-size: smaller; padding-left: 10px; padding-right: 10px;">
-                        <thead>
-                            <tr style="text-align: center;">
-                                <th>Identificador</th>
-                                <th>Nombre</th>
-                                <th>Comprometido</th>
-                                <th>Devengado</th>
-                                <th>Ejecutado</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tr style="text-align: center;">
-                            <td><a href="${pageContext.request.contextPath}/modificarPresupuesto/${proyecto.codigo}.htm">${proyecto.identificador}</a></td>
-                        <td>${proyecto.requerimiento.nombre}</td>
-                        <td>${proyecto.montoComprometido}</td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido - proyecto.montoDevengado- proyecto.montoEjecutado}" /></td>
-                    </tr>
-                </table>
+
+                    <div class="col-6">
+                        <table class="table">
+                            <tr>
+                                <td>Identificador</td>
+                                <td class="text-right">${proyecto.identificador}</td>
+                        </tr>
+                        <tr>
+                            <td>Comprometido</td>
+                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Devengado</td>
+                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Ejecutado</td>
+                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-6">
+                    <table class="table">
+                        <tr>
+                            <td>Identificador</td>
+                            <td class="text-right">${proyecto.identificador}</td>
+                        </tr>
+                        <tr>
+                            <td>Comprometido</td>
+                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Devengado</td>
+                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Ejecutado</td>
+                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
+                        </tr>
+                    </table>
+                </div>
             </form:form>
     </body>
 </html>
