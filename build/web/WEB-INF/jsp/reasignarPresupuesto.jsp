@@ -36,57 +36,62 @@
             </c:if>            
 
             <form:form action="buscarProyectoIdentificador.htm" method="POST" modelAttribute="busquedareq">
-                <div class="input-group">
+                <div class="form-group">
                     <label for="identificador" class="col-form-label">Identificador:&nbsp;&nbsp;&nbsp;</label>
                     <form:input type="text" class="form-control-sm" path="identificador" placeholder="PXXXXX" />
                     <form:errors path="identificador" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
-
                         <button type="submit" class="btn btn-primary  btn-sm">Buscar</button>
                     </div>
-
-                    <br/>
-
-                    <div class="col-6">
-                        <table class="table">
-                            <tr>
-                                <td>Identificador</td>
-                                <td class="text-right">${proyecto.identificador}</td>
-                        </tr>
-                        <tr>
-                            <td>Comprometido</td>
-                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido}" /></td>
-                        </tr>
-                        <tr>
-                            <td>Devengado</td>
-                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
-                        </tr>
-                        <tr>
-                            <td>Ejecutado</td>
-                            <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="col-6">
+                    
+            </form:form>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="card col-6">
                     <table class="table">
                         <tr>
-                            <td>Identificador</td>
+                            <td><h6>Identificador:</h6></td>
                             <td class="text-right">${proyecto.identificador}</td>
                         </tr>
                         <tr>
-                            <td>Comprometido</td>
+                            <td><h6>Comprometido:</h6></td>
                             <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido}" /></td>
                         </tr>
                         <tr>
-                            <td>Devengado</td>
+                            <td><h6>Devengado</h6></td>
                             <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
                         </tr>
                         <tr>
-                            <td>Ejecutado</td>
+                            <td><h6>Ejecutado</h6></td>
                             <td class="text-right"><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
                         </tr>
                     </table>
                 </div>
-            </form:form>
+                <div class="col-6">
+                    <form:form action="ejecutarReasignacion.htm" method="POST" modelAttribute="presupuesto">
+                        <div class="form-group">
+                            <label for="porcentaje">% a Reasignar</label>
+                            <input type="text" class="form-control" id="porcentaje" value="${presupuesto.porcentaje}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sector">Sector Destino</label>
+                            <input type="text" class="form-control" id="sector" value="${presupuesto.sector}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="total">Total</label>
+                            <input type="text" class="form-control" id="total" disabled="true" value="${presupuesto.total}" />
+                        </div>
+                        <button type="submit" class="btn btn-primary  btn-sm">Calcular</button>
+
+                    </form:form>
+                </div>
+            </div>
+
+        </div>    
+
+
+
+
     </body>
 </html>
