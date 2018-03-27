@@ -1,7 +1,7 @@
 <%-- 
-    Document   : validarRequerimiento
-    Created on : 21/03/2018, 12:15:50 AM
-    Author     : jcmal
+    Document   : reasignarPresupuesto
+    Created on : 27/03/2018, 04:59:10 AM
+    Author     : OPERADOR
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,7 +18,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
-        <title>Validar Requerimiento</title>
+        <title>Reasignar Presupuesto</title>
     </head>
     <body>
         <%@include file="header.jsp" %>
@@ -35,11 +35,10 @@
                 </div>
             </c:if>            
 
-            <form:form action="buscarRequerimientoIdentificador.htm" method="POST" modelAttribute="busquedareq">
-
+            <form:form action="buscarProyectoIdentificador.htm" method="POST" modelAttribute="busquedareq">
                 <div class="input-group">
                     <label for="identificador" class="col-form-label">Identificador:&nbsp;&nbsp;&nbsp;</label>
-                    <form:input type="text" class="form-control-sm" path="identificador" placeholder="RXXXXX" />
+                    <form:input type="text" class="form-control-sm" path="identificador" placeholder="PXXXXX" />
                     <form:errors path="identificador" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
 
                         <button type="submit" class="btn btn-primary  btn-sm">Buscar</button>
@@ -51,24 +50,21 @@
                             <tr style="text-align: center;">
                                 <th>Identificador</th>
                                 <th>Nombre</th>
-                                <th>Estado</th>
-                                <th>Monto Inversión</th>
-                                <th>Costo Operación</th>
-                                <th>Ubicación</th>
+                                <th>Comprometido</th>
+                                <th>Devengado</th>
+                                <th>Ejecutado</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tr style="text-align: center;">
-                            <td><a href="${pageContext.request.contextPath}/evaluacionRequerimiento/${requerimiento.codigo}.htm">${requerimiento.identificador}</a></td>
-                        <td>${requerimiento.nombre}</td>
-                        <td>${requerimiento.estadoTramite.nombre}</td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${requerimiento.montoInversion.precioMercado}" /></td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${requerimiento.costoOperacion}" /></td>
-                        <td>${fn:toUpperCase(requerimiento.ubicacion.departamento)}</td>
+                            <td><a href="${pageContext.request.contextPath}/modificarPresupuesto/${proyecto.codigo}.htm">${proyecto.identificador}</a></td>
+                        <td>${proyecto.requerimiento.nombre}</td>
+                        <td>${proyecto.montoComprometido}</td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido - proyecto.montoDevengado- proyecto.montoEjecutado}" /></td>
                     </tr>
                 </table>
             </form:form>
-
-        </div>
     </body>
 </html>
-

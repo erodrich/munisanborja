@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Eric
  */
-public class BeanBusquedaRequerimientoIdentificador {
+public class BeanBusquedaIdentificador {
     
     @NotNull
     private String identificador;
