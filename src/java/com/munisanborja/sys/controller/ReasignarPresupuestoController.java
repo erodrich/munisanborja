@@ -8,6 +8,7 @@ package com.munisanborja.sys.controller;
 import com.munisanborja.sys.dao.ProyectoPreInversionDao;
 import com.munisanborja.sys.model.bean.BeanBusquedaFecha;
 import com.munisanborja.sys.model.bean.BeanBusquedaIdentificador;
+import com.munisanborja.sys.model.bean.BeanNuevoPresupuesto;
 import com.munisanborja.sys.model.entities.ProyectoPreInversion;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -30,9 +31,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class ReasignarPresupuestoController {
-    
+
     ProyectoPreInversionDao ppid = new ProyectoPreInversionDao();
-    
+
     @RequestMapping(value = "/listarProyectos.htm", method = RequestMethod.GET)
     public String listarProyectos(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,7 +44,7 @@ public class ReasignarPresupuestoController {
         return "listarProyectos";
 
     }
-    
+
     @RequestMapping(value = "/buscarProyecto.htm", method = RequestMethod.POST)
     public String buscarProyecto(@ModelAttribute("busquedareq") BeanBusquedaFecha busquedareq,
             BindingResult result, Model model) {
@@ -69,7 +70,7 @@ public class ReasignarPresupuestoController {
         return "listarProyectos";
 
     }
-    
+
     @RequestMapping(value = "/modificarPresupuesto/{codigo}.htm", method = RequestMethod.GET)
     public String modificarPresupuesto(Model model, HttpServletRequest request, HttpServletResponse response, @PathVariable String codigo) {
         ppid = new ProyectoPreInversionDao();
@@ -79,33 +80,48 @@ public class ReasignarPresupuestoController {
 
         return "modificarPresupuesto";
     }
-    
+
     @RequestMapping(value = "/reasignarPresupuesto.htm", method = RequestMethod.GET)
     public String reasignarPresupuesto(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        
         BeanBusquedaIdentificador busquedareq = new BeanBusquedaIdentificador();
         model.addAttribute("busquedareq", busquedareq);
 
         return "reasignarPresupuesto";
 
     }
-    
+
     @RequestMapping(value = "/buscarProyectoIdentificador.htm", method = RequestMethod.POST)
     public String buscarProyectoIdentificador(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
 
         ppid = new ProyectoPreInversionDao();
-        
-        if(!busquedareq.getIdentificador().isEmpty()){
+
+        if (!busquedareq.getIdentificador().isEmpty()) {
             ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
             model.addAttribute("proyecto", p);
         } else {
             model.addAttribute("errorPIP", "El identificador no puede estar vacio");
         }
-        
 
         return "reasignarPresupuesto";
+
+    }
+
+    @RequestMapping(value = "/ejecutarReasignacion.htm", method = RequestMethod.POST)
+    public String ejecutarReasignacion(@ModelAttribute("presupuesto") BeanBusquedaIdentificador busquedareq,
+            BindingResult result, Model model) {
+
+        ppid = new ProyectoPreInversionDao();
+        
+        ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
+        p.setMontoComprometido(busquedareq.getTotal());
+        ppid.update(p);
+        
+        return "listarProyectos";
+        
+
+
 
     }
 }

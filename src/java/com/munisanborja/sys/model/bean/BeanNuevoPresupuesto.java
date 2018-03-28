@@ -5,49 +5,15 @@
  */
 package com.munisanborja.sys.model.bean;
 
-import javax.validation.constraints.NotNull;
-
 /**
  *
- * @author Eric
+ * @author OPERADOR
  */
-public class BeanBusquedaIdentificador {
-    
-    @NotNull
-    private String identificador;
+public class BeanNuevoPresupuesto {
     private int codigo;
     private Float porcentaje;
     private Double total;
     private String sector;
-    
-
-    /**
-     * @return the identificador
-     */
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    /**
-     * @param identificador the identificador to set
-     */
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
-
-    /**
-     * @return the codigo
-     */
-    public int getCodigo() {
-        return codigo;
-    }
-
-    /**
-     * @param codigo the codigo to set
-     */
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
 
     /**
      * @return the porcentaje
@@ -90,5 +56,18 @@ public class BeanBusquedaIdentificador {
     public void setSector(String sector) {
         this.sector = sector;
     }
-    
+
+    /**
+     * @return the codigo
+     */
+    public int getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 }

@@ -58,7 +58,10 @@ public class ProyectoPreInversionDao implements ProyectoPreInversionInterface {
 
     @Override
     public void update(ProyectoPreInversion c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.update(c);
+        session.getTransaction().commit();
     }
 
     @Override
