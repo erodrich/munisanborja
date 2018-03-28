@@ -25,102 +25,102 @@
         <%@include file="header.jsp" %>
         <div class="container col-sm-8" style="font-size: small">
 
-            <c:if test="${not empty errorPIP}">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert"
-                            aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <strong>${errorPIP}</strong>
-                </div>
-            </c:if>            
-
-            <form:form action="buscarProyectoIdentificador.htm" method="POST" modelAttribute="busquedareq">
-                <div class="form-group">
-                    <label for="identificador" class="col-form-label">Identificador:&nbsp;&nbsp;&nbsp;</label>
-                    <form:input type="text" class="form-control-sm" path="identificador" placeholder="PXXXXX" />
-                    <form:errors path="identificador" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
-                        <button type="submit" class="btn btn-primary  btn-sm">Buscar</button>
+                <c:if test="${not empty errorPIP}">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"
+                                aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>${errorPIP}</strong>
                     </div>
+                </c:if>            
 
-            </form:form>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="card col-6">
-                    <table class="table">
-                        <tr>
-                            <td><h6>Identificador:</h6></td>
-                            <td class="text-right">${proyecto.identificador}</td>
-                        </tr>
-                        <tr>
-                            <td><h6>Comprometido:</h6></td>
-                            <td class="text-right" id="comprometido">
-                                <fmt:formatNumber type="number" 
-                                                  maxFractionDigits="2" 
-                                                  value="${proyecto.montoComprometido}" 
-                                                  />
+                <form:form method="POST" modelAttribute="busquedareq">
+                    <div class="form-group">
+                        <label for="identificador" class="col-form-label">Identificador:&nbsp;&nbsp;&nbsp;</label>
+                        <form:input type="text" class="form-control-sm" path="identificador" placeholder="PXXXXX" />
+                        <form:errors path="identificador" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
+                        <button type="submit" formaction="${pageContext.request.contextPath}/buscarProyectoIdentificador.htm"  class="btn btn-primary  btn-sm">Buscar</button>
+                    </div>
+                </form:form>
 
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><h6>Devengado</h6></td>
-                            <td class="text-right" id="devengado">
-                                <fmt:formatNumber type="number" 
-                                                  maxFractionDigits="2" 
-                                                  value="${proyecto.montoDevengado}" 
-                                                  />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><h6>Ejecutado</h6></td>
-                            <td class="text-right" id="ejecutado">
-                                <fmt:formatNumber type="number" 
-                                                  maxFractionDigits="2" 
-                                                  value="${proyecto.montoEjecutado}" 
-                                                  />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-6">
-                    <form:form action="ejecutarReasignacion.htm" method="POST" modelAttribute="busquedareq">
-                        <input type="hidden" name="codigo" value="${proyecto.codigo}"/>
-                        <div class="form-group">
-                            <label for="porcentaje">% a Reasignar</label>
-                            <input type="text" class="form-control" id="porcentaje" value="${busquedareq.porcentaje}" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="sector">Sector Destino</label>
-                            <input type="text" class="form-control" id="sector" value="${busquedareq.sector}" />
-                        </div>
-                        <div class="form-group">
-                            <label for="total">Total</label>
-                            <input type="text" class="form-control" id="total" disabled="true" value="${busquedareq.total}" />
-                        </div>
-                        <button type="button" class="btn btn-primary btn-sm" id="calcular" onclick="calc()">Calcular</button>
-                        <button type="submit" class="btn btn-primary btn-sm" id="reasignar">Reasginar</button>
-
-                    </form:form>
-                </div>
             </div>
+            <div class="container">
+                <div class="row">
+                    <div class="card col-6">
+                        <table class="table">
+                            <tr>
+                                <td><h6>Identificador:</h6></td>
+                                <td class="text-right">${proyecto.identificador}</td>
+                            </tr>
+                            <tr>
+                                <td><h6>Comprometido:</h6></td>
+                                <td class="text-right" id="comprometido">
+                                    <fmt:formatNumber type="number" 
+                                                      maxFractionDigits="2" 
+                                                      value="${proyecto.montoComprometido}" 
+                                                      />
 
-        </div> 
-        <script>
-            function calc() {
-                var comp = document.getElementById("comprometido").textContent;
-                var porc = document.getElementById("porcentaje").value;
-                var ar = comp.split('.');
-                c = '';
-                for (i = 0; i < ar.length; i++) {
-                    c = c.concat(ar[i]);
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h6>Devengado</h6></td>
+                                <td class="text-right" id="devengado">
+                                    <fmt:formatNumber type="number" 
+                                                      maxFractionDigits="2" 
+                                                      value="${proyecto.montoDevengado}" 
+                                                      />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><h6>Ejecutado</h6></td>
+                                <td class="text-right" id="ejecutado">
+                                    <fmt:formatNumber type="number" 
+                                                      maxFractionDigits="2" 
+                                                      value="${proyecto.montoEjecutado}" 
+                                                      />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <form:form method="POST" modelAttribute="busquedareq">
+                            <input type="hidden" name="codigo" value="${proyecto.codigo}"/>
+                            <div class="form-group">
+                                <label for="porcentaje">% a Reasignar</label>
+                                <input type="text" class="form-control" id="porcentaje" name="porcentaje"  />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sector">Sector Destino</label>
+                                <input type="text" class="form-control" id="sector" name="sector"  />
+                            </div>
+                            <div class="form-group">
+                                <label for="total">Total</label>
+                                <input type="text" class="form-control" id="total" name="total"  />
+                            </div>
+                            <button type="button" class="btn btn-primary btn-sm" id="calcular" onclick="calc()">Calcular</button>
+                            <button type="submit" formaction="${pageContext.request.contextPath}/ejecutarReasignar.htm" class="btn btn-primary btn-sm" id="reasignar">Reasginar</button>
+
+                        </form:form>
+                    </div>
+                </div>
+
+            </div> 
+            <script>
+                function calc() {
+                    var comp = document.getElementById("comprometido").textContent;
+                    var porc = document.getElementById("porcentaje").value;
+                    var ar = comp.split('.');
+                    c = '';
+                    for (i = 0; i < ar.length; i++) {
+                        c = c.concat(ar[i]);
+                    }
+                    var x = parseInt(c) + ((parseInt(c) * porc) / 100);
+                    document.getElementById("total").setAttribute('value', x);
+
                 }
-                var x = parseInt(c)+((parseInt(c)*porc)/100);
-                document.getElementById("total").setAttribute('value', x);
-
-            }
-        </script>
-    </body>
-</html>
+            </script>
+        </body>
+    </html>

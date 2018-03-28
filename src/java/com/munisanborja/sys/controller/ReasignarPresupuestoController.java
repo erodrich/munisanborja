@@ -8,7 +8,6 @@ package com.munisanborja.sys.controller;
 import com.munisanborja.sys.dao.ProyectoPreInversionDao;
 import com.munisanborja.sys.model.bean.BeanBusquedaFecha;
 import com.munisanborja.sys.model.bean.BeanBusquedaIdentificador;
-import com.munisanborja.sys.model.bean.BeanNuevoPresupuesto;
 import com.munisanborja.sys.model.entities.ProyectoPreInversion;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -108,20 +107,18 @@ public class ReasignarPresupuestoController {
 
     }
 
-    @RequestMapping(value = "/ejecutarReasignacion.htm", method = RequestMethod.POST)
-    public String ejecutarReasignacion(@ModelAttribute("presupuesto") BeanBusquedaIdentificador busquedareq,
+    @RequestMapping(value = "/ejecutarReasignar.htm", method = RequestMethod.POST)
+    public String ejecutarReasignar(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
 
         ppid = new ProyectoPreInversionDao();
-        
         ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
         p.setMontoComprometido(busquedareq.getTotal());
         ppid.update(p);
-        
-        return "listarProyectos";
-        
 
-
+        
+        return "reasignarPresupuesto";
+        
 
     }
 }

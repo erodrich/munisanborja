@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 public class BeanBusquedaIdentificador {
     
-    @NotNull
+
     private String identificador;
     private int codigo;
     private Float porcentaje;
