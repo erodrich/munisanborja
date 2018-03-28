@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/proyecto%20MUNI%20SB/version%201/munisanborja/src/java/com/munisanborja/sys/model/entities/EvaluacionProcesoDetalle.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/version%201/munisanborja/src/java/com/munisanborja/sys/model/entities/Parametro.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/version%201/munisanborja/src/java/com/munisanborja/sys/dao/RequerimientoInterface.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/version%201/munisanborja/src/java/com/munisanborja/sys/model/entities/TipoProyectoInversion.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/version%201/munisanborja/src/java/com/munisanborja/sys/model/entities/EvaluacionProceso.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/version%201/munisanborja/src/java/com/munisanborja/sys/model/entities/Requerimiento.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/version%201/munisanborja/src/java/com/munisanborja/sys/dao/RequerimientoDao.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/version%201/munisanborja/src/java/com/munisanborja/sys/model/entities/Componente.java</file>
+        </group>
     </open-files>
 </project-private>
