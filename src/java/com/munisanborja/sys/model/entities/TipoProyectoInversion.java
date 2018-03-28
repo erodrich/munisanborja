@@ -23,7 +23,25 @@ public class TipoProyectoInversion {
     @Column(name="codigo")
     private int codigo;
     private String nombre;
+    private Double factormocalificada;
+    private Double factormonocalificada;
 
+    public Double getFactormocalificada() {
+        return factormocalificada;
+    }
+
+    public void setFactormocalificada(Double factormocalificada) {
+        this.factormocalificada = factormocalificada;
+    }
+
+    public Double getFactormonocalificada() {
+        return factormonocalificada;
+    }
+
+    public void setFactormonocalificada(Double factormonocalificada) {
+        this.factormonocalificada = factormonocalificada;
+    }     
+    
     public int getCodigo() {
         return codigo;
     }

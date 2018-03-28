@@ -39,7 +39,52 @@ public class EvaluacionProceso {
     
     @Column(updatable = false)
     private Date fechacreacion;
+    private Double impuestorenta;
+    private Double costomanoobrac;
+    private Double factormanoobrac;
+    private Double costomanoobranc;
+    private Double factormanoobranc;
 
+    public Double getImpuestorenta() {
+        return impuestorenta;
+    }
+
+    public void setImpuestorenta(Double impuestorenta) {
+        this.impuestorenta = impuestorenta;
+    }
+
+    public Double getCostomanoobrac() {
+        return costomanoobrac;
+    }
+
+    public void setCostomanoobrac(Double costomanoobrac) {
+        this.costomanoobrac = costomanoobrac;
+    }
+
+    public Double getFactormanoobrac() {
+        return factormanoobrac;
+    }
+
+    public void setFactormanoobrac(Double factormanoobrac) {
+        this.factormanoobrac = factormanoobrac;
+    }
+
+    public Double getCostomanoobranc() {
+        return costomanoobranc;
+    }
+
+    public void setCostomanoobranc(Double costomanoobranc) {
+        this.costomanoobranc = costomanoobranc;
+    }
+
+    public Double getFactormanoobranc() {
+        return factormanoobranc;
+    }
+
+    public void setFactormanoobranc(Double factormanoobranc) {
+        this.factormanoobranc = factormanoobranc;
+    }    
+    
     public Date getFechacreacion() {
         return fechacreacion;
     }
