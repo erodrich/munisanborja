@@ -13,7 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author Eric
  */
-public class BeanBusquedaRequerimiento {
+public class BeanBusquedaFecha {
 
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")

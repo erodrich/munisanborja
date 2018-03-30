@@ -65,7 +65,8 @@
                         <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${requerimiento.costoOperacion}" /></td>
                         <td>${fn:toUpperCase(requerimiento.ubicacion.departamento)}</td>
                     </tr>
-                </form:form>
+                </table>
+            </form:form>
 
         </div>
     </body>

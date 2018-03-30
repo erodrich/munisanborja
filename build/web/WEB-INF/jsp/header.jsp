@@ -17,6 +17,8 @@
                             <div class="dropdown-menu">                             
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/listarRequerimiento.htm">Listar Requerimientos de Proyectos</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Validar Requerimiento Proyecto</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/listarProyectos.htm">Listar Proyectos</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/reasignarPresupuesto.htm">Reasignar Presupuesto de Proyecto</a>
                             </div>
                         </li>
                         

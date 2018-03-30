@@ -6,8 +6,8 @@
 package com.munisanborja.sys.controller;
 
 import com.munisanborja.sys.dao.RequerimientoDao;
-import com.munisanborja.sys.model.bean.BeanBusquedaRequerimiento;
-import com.munisanborja.sys.model.bean.BeanBusquedaRequerimientoIdentificador;
+import com.munisanborja.sys.model.bean.BeanBusquedaFecha;
+import com.munisanborja.sys.model.bean.BeanBusquedaIdentificador;
 import com.munisanborja.sys.model.entities.Requerimiento;
 import com.munisanborja.sys.model.logic.GestionRequerimiento;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class RequerimientoController {
     public String listarRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //System.out.println("Pruebaaaaaaa");
-        BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
+        BeanBusquedaFecha busquedareq = new BeanBusquedaFecha();
         model.addAttribute("busquedareq", busquedareq);
 
         return "listarRequerimiento";
@@ -51,7 +51,7 @@ public class RequerimientoController {
     public String validarRequerimiento(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //System.out.println("Pruebaaaaaaa");
-        BeanBusquedaRequerimientoIdentificador busquedareq = new BeanBusquedaRequerimientoIdentificador();
+        BeanBusquedaIdentificador busquedareq = new BeanBusquedaIdentificador();
         model.addAttribute("busquedareq", busquedareq);
 
         return "validarRequerimiento";
@@ -59,7 +59,7 @@ public class RequerimientoController {
     }
     
     @RequestMapping(value = "/buscarRequerimientoIdentificador.htm", method = RequestMethod.POST)
-    public String buscarRequerimientoIdentificador(@ModelAttribute("busquedareq") BeanBusquedaRequerimientoIdentificador busquedareq,
+    public String buscarRequerimientoIdentificador(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
 
         rd = new RequerimientoDao();
@@ -77,7 +77,7 @@ public class RequerimientoController {
     }
 
     @RequestMapping(value = "/buscarRequerimiento.htm", method = RequestMethod.POST)
-    public String buscarRequerimiento(@ModelAttribute("busquedareq") BeanBusquedaRequerimiento busquedareq,
+    public String buscarRequerimiento(@ModelAttribute("busquedareq") BeanBusquedaFecha busquedareq,
             BindingResult result, Model model) {
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
