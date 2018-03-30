@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -26,18 +27,19 @@ public class EvaluacionProceso {
     private int codigo;
     
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="codigoPIP", referencedColumnName="codigo", nullable=false)
-    private ProyectoPreInversion proyectoPreInversion;
+    @JoinColumn(name="codigorequerimiento", referencedColumnName="codigo")
+    private Requerimiento requerimiento;
     
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="codigotipoPIP", referencedColumnName="codigo", nullable=false)
+    @JoinColumn(name="codigotipoproyecto", referencedColumnName="codigo")
     private TipoProyectoInversion tipoProyectoInversion;
     
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="EstadoTramite_codigo", referencedColumnName="codigo", nullable=false)
+    @JoinColumn(name="codigoestado", referencedColumnName="codigo", nullable=false)
     private EstadoTramite estadoTramite;
     
     @Column(updatable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fechacreacion;
     private Double impuestorenta;
     private Double costomanoobrac;
@@ -45,6 +47,14 @@ public class EvaluacionProceso {
     private Double costomanoobranc;
     private Double factormanoobranc;
 
+    public Requerimiento getRequerimiento() {
+        return requerimiento;
+    }
+
+    public void setRequerimiento(Requerimiento requerimiento) {
+        this.requerimiento = requerimiento;
+    }    
+    
     public Double getImpuestorenta() {
         return impuestorenta;
     }
@@ -100,14 +110,6 @@ public class EvaluacionProceso {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-
-    public ProyectoPreInversion getProyectoPreInversion() {
-        return proyectoPreInversion;
-    }
-
-    public void setProyectoPreInversion(ProyectoPreInversion proyectoPreInversion) {
-        this.proyectoPreInversion = proyectoPreInversion;
     }
 
     public TipoProyectoInversion getTipoProyectoInversion() {

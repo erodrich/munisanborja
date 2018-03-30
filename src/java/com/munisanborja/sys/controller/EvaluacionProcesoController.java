@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
@@ -62,6 +63,19 @@ public class EvaluacionProcesoController {
         }
 
         return "listarEvaluacionProceso";
+    }
+    
+    @RequestMapping(value = "/detalleEvaluacionProceso/{codigo}.htm", method = RequestMethod.GET)
+    public String detalleEvaluacionProceso(Model model, HttpServletRequest request, HttpServletResponse response, @PathVariable String codigo) {
+        rd = new EvaluacionProcesoDao();
+        EvaluacionProceso evaluacionproceso = rd.get(Integer.parseInt(codigo));
+
+        model.addAttribute("evaluacionproceso", evaluacionproceso);
+
+        //BeanBusquedaRequerimiento busquedareq = new BeanBusquedaRequerimiento();
+        //model.addAttribute("busquedareq", busquedareq);
+        return "detalleEvaluacionProceso";
+
     }
 /*
     @RequestMapping(value = "/cancel.htm", method = RequestMethod.GET)

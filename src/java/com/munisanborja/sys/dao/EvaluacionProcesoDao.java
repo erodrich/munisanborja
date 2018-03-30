@@ -80,28 +80,48 @@ public class EvaluacionProcesoDao implements EvaluacionProcesoInterface {
 }
 
 @Override
-        public EvaluacionProceso get(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EvaluacionProceso get(Integer id) {
+        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
+        ss.beginTransaction();
+        EvaluacionProceso ep = (EvaluacionProceso) session.get(EvaluacionProceso.class, id);
+        ss.getTransaction().commit();
+        return ep;
     }
 
     @Override
-        public EvaluacionProceso get(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EvaluacionProceso get(String id) {
+        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
+        ss.beginTransaction();
+        Criteria cr = session.createCriteria(EvaluacionProceso.class)
+                .add(Restrictions.eq("codigo", id));
+        
+        EvaluacionProceso ep = (EvaluacionProceso) cr.uniqueResult();
+        ss.getTransaction().commit();
+        return ep;
     }
 
     @Override
-        public void create(EvaluacionProceso c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void create(EvaluacionProceso c) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.save(c);
+        session.getTransaction().commit();
     }
 
     @Override
-        public void update(EvaluacionProceso c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(EvaluacionProceso c) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.update(c);
+        session.getTransaction().commit();
     }
 
     @Override
-        public void delete(EvaluacionProceso c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(EvaluacionProceso c) {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.delete(c);
+        session.getTransaction().commit();
     }
     
     

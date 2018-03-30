@@ -52,9 +52,9 @@
                     <table class="table table-striped" style="font-size: smaller; padding-left: 10px; padding-right: 10px;">
                         <thead>
                             <tr style="text-align: center;">
-                                <th>Identificador</th>
-                                <th>Nombre Proyecto</th>
-                                <th>Fecha viabilidad</th>
+                                <th>Codigo</th>
+                                <th>Identificador Requerimiento</th>
+                                <th>Nombre Requerimiento</th>
                                 <th>Tipo Proyecto</th>
                                 <th>Estado</th>
                                 <th>Fecha</th>                               
@@ -62,12 +62,12 @@
                         </thead>
                     <c:forEach var="eva" items="${list}">
                         <tr style="text-align: center;">
-                            <td>${eva.codigo}</td>
-                            <td>${eva.proyectoPreInversion.codigo}</td>
-                            <td>${eva.proyectoPreInversion.fechaDeclaratoriaViabilidad}</td>
+                            <td><a href="${pageContext.request.contextPath}/detalleEvaluacionProceso/${eva.codigo}.htm">${eva.codigo}</a></td>
+                            <td>${eva.requerimiento.identificador}</td>
+                            <td>${eva.requerimiento.nombre}</td>
                             <td>${eva.tipoProyectoInversion.nombre}</td>
                             <td>${eva.estadoTramite.nombre}</td>
-                            <td>${eva.fechacreacion}</td>
+                            <td><fmt:formatDate pattern = "dd-MM-yyyy" value="${eva.fechacreacion}"></fmt:formatDate></td>
                         </tr>
                     </c:forEach>
                 </table>
