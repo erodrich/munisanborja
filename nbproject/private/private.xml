@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/web/WEB-INF/jsp/resumenEvaluacion.jsp</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/web/WEB-INF/jsp/detalleEvaluacionProceso.jsp</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/src/java/hibernate.cfg.xml</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/src/java/com/munisanborja/sys/model/entities/Requerimiento.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/src/java/com/munisanborja/sys/controller/EvaluacionProcesoController.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/web/WEB-INF/jsp/detalleRequerimiento.jsp</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/src/java/com/munisanborja/sys/controller/RequerimientoController.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/src/java/com/munisanborja/sys/model/bean/BeanBusquedaRequerimientoIdentificador.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/src/java/com/munisanborja/sys/model/entities/EvaluacionProceso.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/web/WEB-INF/jsp/evaluacionRequerimiento.jsp</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/web/WEB-INF/jsp/listarEvaluacionProceso.jsp</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/web/WEB-INF/jsp/listarRequerimiento.jsp</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/src/java/com/munisanborja/sys/dao/RequerimientoDao.java</file>
+            <file>file:/E:/proyecto%20MUNI%20SB/RG/munisanborja/src/java/com/munisanborja/sys/dao/EvaluacionProcesoDao.java</file>
+        </group>
     </open-files>
 </project-private>

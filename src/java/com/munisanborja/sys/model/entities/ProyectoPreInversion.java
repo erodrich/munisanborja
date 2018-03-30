@@ -5,10 +5,17 @@
  */
 package com.munisanborja.sys.model.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Eric
  */
+
 public class ProyectoPreInversion {
-    
+
+     
 }
