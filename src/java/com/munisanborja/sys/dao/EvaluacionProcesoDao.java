@@ -7,11 +7,13 @@ package com.munisanborja.sys.dao;
 
 import com.munisanborja.sys.HibernateUtil;
 import com.munisanborja.sys.model.entities.EvaluacionProceso;
+import com.munisanborja.sys.model.entities.Requerimiento;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
@@ -123,6 +125,8 @@ public class EvaluacionProcesoDao implements EvaluacionProcesoInterface {
         session.delete(c);
         session.getTransaction().commit();
     }
+
+   
     
     
 }

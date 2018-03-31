@@ -6,6 +6,7 @@
 package com.munisanborja.sys.dao;
 
 import com.munisanborja.sys.model.entities.EvaluacionProceso;
+import com.munisanborja.sys.model.entities.Requerimiento;
 import java.util.Date;
 import java.util.List;
 
@@ -23,4 +24,5 @@ public interface EvaluacionProcesoInterface {
     public void create(EvaluacionProceso c);
     public void update(EvaluacionProceso c);
     public void delete(EvaluacionProceso c);
+    
 }

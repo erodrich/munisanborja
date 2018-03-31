@@ -6,8 +6,10 @@
 package com.munisanborja.sys.controller;
 
 import com.munisanborja.sys.dao.EvaluacionProcesoDao;
+import com.munisanborja.sys.dao.RequerimientosDao;
 import com.munisanborja.sys.model.bean.BeanBusquedaRequerimiento;
 import com.munisanborja.sys.model.entities.EvaluacionProceso;
+import com.munisanborja.sys.model.entities.Requerimientos;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -77,6 +80,20 @@ public class EvaluacionProcesoController {
         return "detalleEvaluacionProceso";
 
     }
+    
+    @RequestMapping(value = "/evaluarProceso.htm", method = RequestMethod.GET)
+    public String evaluarProceso(ModelMap modelMap ) throws ServletException, IOException {
+        RequerimientosDao req=new RequerimientosDao();
+        List<Requerimientos> lista;        
+        lista=req.requerimientoList();
+        modelMap.put("requerimientoList", lista);
+        
+        
+        return "evaluarProceso";
+
+    }
+    
+    
 /*
     @RequestMapping(value = "/cancel.htm", method = RequestMethod.GET)
     public String cancelEvaluacionProceso() {
