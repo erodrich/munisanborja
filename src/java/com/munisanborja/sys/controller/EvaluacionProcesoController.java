@@ -7,9 +7,11 @@ package com.munisanborja.sys.controller;
 
 import com.munisanborja.sys.dao.EvaluacionProcesoDao;
 import com.munisanborja.sys.dao.RequerimientosDao;
+import com.munisanborja.sys.dao.TiposProyectosDao;
 import com.munisanborja.sys.model.bean.BeanBusquedaRequerimiento;
 import com.munisanborja.sys.model.entities.EvaluacionProceso;
 import com.munisanborja.sys.model.entities.Requerimientos;
+import com.munisanborja.sys.model.entities.TiposProyectos;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -87,6 +89,11 @@ public class EvaluacionProcesoController {
         List<Requerimientos> lista;        
         lista=req.requerimientoList();
         modelMap.put("requerimientoList", lista);
+        
+        TiposProyectosDao tps=new TiposProyectosDao();
+        List<TiposProyectos> list;
+        list=tps.tiposProyectosList();
+        modelMap.put("tipoProyectoList", list);
         
         
         return "evaluarProceso";

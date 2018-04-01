@@ -6,7 +6,7 @@
 package com.munisanborja.sys.dao;
 
 import com.munisanborja.sys.HibernateUtil;
-import com.munisanborja.sys.model.entities.tiposproyectos;
+import com.munisanborja.sys.model.entities.TiposProyectos;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,11 +20,11 @@ public class TiposProyectosDao implements TiposProyectosInterface{
     private Session session = HibernateUtil.getSessionFactory().openSession();
     
     @Override
-    public List<tiposproyectos> tiposProyectosList() {
-        List<tiposproyectos> list = null;
+    public List<TiposProyectos> tiposProyectosList() {
+        List<TiposProyectos> list = null;
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-            Query q=session.createQuery("from com.munisanborja.sys.model.entities.tiposproyectos");
+            Query q=session.createQuery("from com.munisanborja.sys.model.entities.TiposProyectos");
         list=q.list();
         session.getTransaction().commit();
         return list;

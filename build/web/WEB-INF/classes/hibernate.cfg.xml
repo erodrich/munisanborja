@@ -21,6 +21,6 @@
     <mapping class="com.munisanborja.sys.model.entities.EvaluacionProceso" />
     <mapping class="com.munisanborja.sys.model.entities.TipoProyectoInversion" />
     <mapping class="com.munisanborja.sys.model.entities.Requerimientos" />
-    <mapping class="com.munisanborja.sys.model.entities.tiposproyectos" />
+    <mapping class="com.munisanborja.sys.model.entities.TiposProyectos" />
   </session-factory>
 </hibernate-configuration>

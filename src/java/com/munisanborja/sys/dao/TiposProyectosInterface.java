@@ -5,7 +5,7 @@
  */
 package com.munisanborja.sys.dao;
 
-import com.munisanborja.sys.model.entities.tiposproyectos;
+import com.munisanborja.sys.model.entities.TiposProyectos;
 import java.util.List;
 
 /**
@@ -13,5 +13,5 @@ import java.util.List;
  * @author Hugo Alexander
  */
 public interface TiposProyectosInterface {
-    public List<tiposproyectos> tiposProyectosList(); 
+    public List<TiposProyectos> tiposProyectosList(); 
 }
