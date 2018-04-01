@@ -8,11 +8,11 @@
 <html>
     <head>
         <%@include file="includes/header.jsp" %> 
-        <title>Sistema de Gestión Municipal - Versión 1.1</title>
+        <title>Sistema de Gestión Municipal</title>
     </head>
     <body>
 
-        <div class="container col-sm-8" style="font-size: small">
+        <div class="container">
             <%@include file="includes/navbar.jsp" %>
 
             <c:if test="${not empty errorPIP}">
@@ -25,9 +25,9 @@
                 </div>
             </c:if>
 
-            <h1>Listar Requerimientos</h1>
-
-            <form:form action="buscarRequerimiento.htm" method="POST" modelAttribute="busquedareq">
+            <h2>Listar Requerimientos</h2>
+            <p>
+                <form:form action="buscarRequerimiento.htm" method="POST" modelAttribute="busquedareq">
 
                 <div class="input-group">
                     <label for="fechaInicio" class="col-form-label">Fecha Inicio:&nbsp;&nbsp;&nbsp;</label>
@@ -40,6 +40,9 @@
                     </div>
 
             </form:form>
+                
+            </p>
+            
             <br />
             <table class="table table-striped" style="font-size: smaller; padding-left: 10px; padding-right: 10px;">
                 <thead>

@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <%@include file="includes/header.jsp" %>
         <title>Sistema de Gestión Municipal</title>
     </head>
@@ -13,7 +12,7 @@
             <center><img src="images/muni_sanborja.jpg" alt="" width="800"/></center>
 
         </div>
-<%@include file="includes/footer.jsp" %>
+        <%@include file="includes/footer.jsp" %>
     </body>
 </html>
 
