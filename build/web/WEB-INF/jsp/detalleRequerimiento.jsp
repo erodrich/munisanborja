@@ -12,9 +12,9 @@
     </head>
     <body>
 
-        <div class="container col-sm-8" style="font-size: small">
+         <div class="container">
             <%@include file="includes/navbar.jsp" %>
-            <h1>Detalle de Requerimiento</h1>
+            <h2>Detalle de Requerimiento</h2>
 
             <form:form action="${action}" method="POST" modelAttribute="requerimiento">
 

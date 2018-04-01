@@ -18,7 +18,7 @@
         <title>Reasignar Presupuesto</title>
     </head>
     <body>
-        <div class="container col-sm-8" style="font-size: small">
+        <div class="container">
             <%@include file="includes/navbar.jsp" %>
             <c:if test="${not empty errorPIP}">
                 <div class="alert alert-danger alert-dismissible" role="alert">

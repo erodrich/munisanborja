@@ -15,7 +15,7 @@
                 <a class="nav-link dropdown-toggle" href="#"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Requerimientos</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown09">
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/listarRequerimiento.htm">Listar</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm"">Validar</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Validar</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -33,4 +33,4 @@
         </ul>
         <img src="${pageContext.request.contextPath}/images/logosb2.png" height="80">
     </div>
-</nav
+</nav>
