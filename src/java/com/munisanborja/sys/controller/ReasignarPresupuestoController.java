@@ -70,15 +70,6 @@ public class ReasignarPresupuestoController {
 
     }
 
-    @RequestMapping(value = "/modificarPresupuesto/{codigo}.htm", method = RequestMethod.GET)
-    public String modificarPresupuesto(Model model, HttpServletRequest request, HttpServletResponse response, @PathVariable String codigo) {
-        ppid = new ProyectoPreInversionDao();
-        ProyectoPreInversion proyecto = ppid.get(Integer.parseInt(codigo));
-
-        model.addAttribute("proyecto", proyecto);
-
-        return "modificarPresupuesto";
-    }
 
     @RequestMapping(value = "/reasignarPresupuesto.htm", method = RequestMethod.GET)
     public String reasignarPresupuesto(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -115,6 +106,8 @@ public class ReasignarPresupuestoController {
         ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
         p.setMontoComprometido(busquedareq.getTotal());
         ppid.update(p);
+        p = ppid.get(p.getCodigo());
+        model.addAttribute("proyecto", p);
 
         
         return "reasignarPresupuesto";

@@ -58,10 +58,10 @@ public class ProyectoPreInversionDao implements ProyectoPreInversionInterface {
 
     @Override
     public void update(ProyectoPreInversion c) {
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        session.update(c);
-        session.getTransaction().commit();
+        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
+        ss.beginTransaction();
+        ss.update(c);
+        ss.getTransaction().commit();
     }
 
     @Override

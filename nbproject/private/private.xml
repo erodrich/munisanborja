@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/dev/NetBeans%20Projects/munisanborja/src/java/com/munisanborja/sys/model/bean/BeanBusquedaFecha.java</file>
             <file>file:/D:/dev/NetBeans%20Projects/munisanborja/src/java/com/munisanborja/sys/controller/ReasignarPresupuestoController.java</file>
-            <file>file:/D:/dev/NetBeans%20Projects/munisanborja/src/java/com/munisanborja/sys/model/bean/BeanBusquedaIdentificador.java</file>
-            <file>file:/D:/dev/NetBeans%20Projects/munisanborja/web/WEB-INF/jsp/listarProyectos.jsp</file>
-            <file>file:/D:/dev/NetBeans%20Projects/munisanborja/web/WEB-INF/jsp/reasignarPresupuesto.jsp</file>
-            <file>file:/D:/dev/NetBeans%20Projects/munisanborja/web/WEB-INF/jsp/listarRequerimiento.jsp</file>
+            <file>file:/D:/dev/NetBeans%20Projects/munisanborja/src/java/com/munisanborja/sys/dao/ProyectoPreInversionDao.java</file>
         </group>
     </open-files>
 </project-private>
