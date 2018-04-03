@@ -6,20 +6,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>       
+        <%@include file="includes/header.jsp" %>      
 
         <title>Detalle - Sistema de Gestión Municipal - Versión 1.1</title>
     </head>
     <body>
-        <%@include file="header.jsp" %>
 
-        <div class="container col-sm-8" style="font-size: small">
+         <div class="container">
+            <%@include file="includes/navbar.jsp" %>
+            <h2>Detalle de Requerimiento</h2>
 
             <form:form action="${action}" method="POST" modelAttribute="requerimiento">
 
@@ -37,9 +32,6 @@
                             </div>
                             <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
                                 <label for="fechaCreacion">Fecha de Creación: </label>
-                                <!-- <fmt:formatDate value="${requerimiento.fechaCreacion}"
-                                                pattern="yyyy-MM-dd"
-                                                var="fechaCreacionF" /> -->
                                 <input type="text" class="form-control form-control-sm" id="fechaCreacion" disabled="true" value="${requerimiento.fechaCreacion}" />
                             </div>
                             <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
@@ -103,7 +95,7 @@
                                 <label for="costoMantenimiento">Costo de Mantenimiento: </label>
                                 <input type="text" class="form-control form-control-sm" id="costoMantenimiento" disabled="true" value="${requerimiento.costoMantenimiento}" />
                             </div>
-                            
+
                             <button type="button" class="btn btn-primary btn-sm" onclick="javascript:history.back();">Retornar</button>
 
                             <div class="clearfix"></div>
@@ -112,8 +104,8 @@
                     </div>        
                 </div>                
 
-            </form:form>            
-
+            </form:form>
         </div>
+            <%@include file="includes/footer.jsp" %>
     </body>
 </html>

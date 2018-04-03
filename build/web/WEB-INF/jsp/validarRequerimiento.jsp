@@ -13,18 +13,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script> 
+        <%@include file="includes/header.jsp" %> 
         <title>Validar Requerimiento</title>
     </head>
     <body>
-        <%@include file="header.jsp" %>
-
-        <div class="container col-sm-8" style="font-size: small">
-
+         <div class="container">
+            <%@include file="includes/navbar.jsp" %>
             <c:if test="${not empty errorPIP}">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert"
@@ -65,9 +59,11 @@
                         <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${requerimiento.costoOperacion}" /></td>
                         <td>${fn:toUpperCase(requerimiento.ubicacion.departamento)}</td>
                     </tr>
-                </form:form>
+                </table>
+            </form:form>
 
         </div>
+            <%@include file="includes/footer.jsp" %>
     </body>
 </html>
 

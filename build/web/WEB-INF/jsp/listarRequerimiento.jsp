@@ -7,19 +7,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>  
-        <title>Sistema de Gestión Municipal - Versión 1.1</title>
+        <%@include file="includes/header.jsp" %> 
+        <title>Sistema de Gestión Municipal</title>
     </head>
     <body>
-        <%@include file="header.jsp" %>
 
-        <div class="container col-sm-8" style="font-size: small">
+        <div class="container">
+            <%@include file="includes/navbar.jsp" %>
 
             <c:if test="${not empty errorPIP}">
                 <div class="alert alert-danger alert-dismissible" role="alert">
@@ -29,9 +23,11 @@
                     </button>
                     <strong>${errorPIP}</strong>
                 </div>
-            </c:if>            
+            </c:if>
 
-            <form:form action="buscarRequerimiento.htm" method="POST" modelAttribute="busquedareq">
+            <h2>Listar Requerimientos</h2>
+            <p>
+                <form:form action="buscarRequerimiento.htm" method="POST" modelAttribute="busquedareq">
 
                 <div class="input-group">
                     <label for="fechaInicio" class="col-form-label">Fecha Inicio:&nbsp;&nbsp;&nbsp;</label>
@@ -43,33 +39,36 @@
                         <button type="submit" class="btn btn-primary  btn-sm">Buscar</button>
                     </div>
 
-                    <br/>
-                    <table class="table table-striped" style="font-size: smaller; padding-left: 10px; padding-right: 10px;">
-                        <thead>
-                            <tr style="text-align: center;">
-                                <th>Identificador</th>
-                                <th>Nombre</th>
-                                <th>Estado</th>
-                                <th>Monto Inversión</th>
-                                <th>Costo Operación</th>
-                                <th>Ubicación</th>
-                            </tr>
-                        </thead>
-                    <c:forEach var="epip" items="${list}">
-                        <tr style="text-align: center;">
-                            <td><a href="${pageContext.request.contextPath}/detalleRequerimiento/${epip.codigo}.htm">${epip.identificador}</a></td>
-                            <td>${epip.nombre}</td>
-                            <td>${epip.estadoTramite.nombre}</td>
-                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.montoInversion.precioMercado}" /></td>
-                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.costoOperacion}" /></td>
-                            <td>${fn:toUpperCase(epip.ubicacion.departamento)}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
             </form:form>
+                
+            </p>
+            
+            <br />
+            <table class="table table-striped" style="font-size: smaller; padding-left: 10px; padding-right: 10px;">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th>Identificador</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th>Monto Inversión</th>
+                        <th>Costo Operación</th>
+                        <th>Ubicación</th>
+                    </tr>
+                </thead>
+                <c:forEach var="epip" items="${list}">
+                    <tr style="text-align: center;">
+                        <td><a href="${pageContext.request.contextPath}/detalleRequerimiento/${epip.codigo}.htm">${epip.identificador}</a></td>
+                        <td>${epip.nombre}</td>
+                        <td>${epip.estadoTramite.nombre}</td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.montoInversion.precioMercado}" /></td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.costoOperacion}" /></td>
+                        <td>${fn:toUpperCase(epip.ubicacion.departamento)}</td>
+                    </tr>
+                </c:forEach>
+            </table>
 
         </div>
-
+            <%@include file="includes/footer.jsp" %>
     </body>
 </html>
 

@@ -6,20 +6,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>       
+        <%@include file="includes/header.jsp" %>      
 
         <title>Evaluar - Sistema de Gestión Municipal - Versión 1.1</title>
     </head>
     <body>
-        <%@include file="header.jsp" %>
 
-        <div class="container col-sm-8" style="font-size: small">
+         <div class="container">
+            <%@include file="includes/navbar.jsp" %>
 
             <form:form action="${action}" method="POST" modelAttribute="requerimiento">
 
@@ -119,5 +113,6 @@
             </form:form>            
 
         </div>
+            <%@include file="includes/footer.jsp" %>
     </body>
 </html>
