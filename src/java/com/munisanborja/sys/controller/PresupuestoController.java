@@ -6,12 +6,15 @@
 package com.munisanborja.sys.controller;
 
 import com.munisanborja.sys.dao.ProyectoPreInversionDao;
+import com.munisanborja.sys.dao.RubroDao;
 import com.munisanborja.sys.model.bean.BeanBusquedaFecha;
 import com.munisanborja.sys.model.bean.BeanBusquedaIdentificador;
 import com.munisanborja.sys.model.entities.ProyectoPreInversion;
+import com.munisanborja.sys.model.entities.Rubro;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author OPERADOR
  */
 @Controller
-public class ReasignarPresupuestoController {
+public class PresupuestoController {
 
     ProyectoPreInversionDao ppid = new ProyectoPreInversionDao();
 
@@ -70,7 +73,6 @@ public class ReasignarPresupuestoController {
 
     }
 
-
     @RequestMapping(value = "/reasignarPresupuesto.htm", method = RequestMethod.GET)
     public String reasignarPresupuesto(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -90,6 +92,7 @@ public class ReasignarPresupuestoController {
         if (!busquedareq.getIdentificador().isEmpty()) {
             ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
             model.addAttribute("proyecto", p);
+
         } else {
             model.addAttribute("errorPIP", "El identificador no puede estar vacio");
         }
@@ -109,9 +112,33 @@ public class ReasignarPresupuestoController {
         p = ppid.get(p.getCodigo());
         model.addAttribute("proyecto", p);
 
-        
         return "reasignarPresupuesto";
+
+    }
+
+    @RequestMapping(value = "/comprometerPresupuesto.htm", method = RequestMethod.GET)
+    public String comprometerPresupuesto(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        BeanBusquedaIdentificador busquedareq = new BeanBusquedaIdentificador();
         
+        List<Rubro> sectores = new ArrayList<>();
+        RubroDao rd = new RubroDao();
+        sectores = rd.listarRubro();
+        
+        model.addAttribute("busquedareq", busquedareq);
+        model.addAttribute("sectorList", sectores);
+
+        return "comprometerPresupuesto";
+
+    }
+    
+    @RequestMapping(value = "/ejecutarComprometer.htm", method = RequestMethod.POST)
+    public String ejecutarComprometer(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
+            BindingResult result, Model model) {
+
+        
+
+        return "comprometerPresupuesto";
 
     }
 }

@@ -22,5 +22,6 @@
     <mapping class="com.munisanborja.sys.model.entities.ProyectoPreInversion" />
     <mapping class="com.munisanborja.sys.model.entities.UbicacionValida" />
     <mapping class="com.munisanborja.sys.model.entities.UnidadEjecutoraValida" />
+    <mapping class="com.munisanborja.sys.model.entities.Rubro" />
   </session-factory>
 </hibernate-configuration>
