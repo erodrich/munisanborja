@@ -18,7 +18,7 @@
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/listarRequerimiento.htm">Listar Requerimientos de Proyectos</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Validar Requerimiento Proyecto</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/listarEvaluacionProceso.htm">Listar Evaluacion Proceso</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/evaluarProceso.htm">Evaluar Proceso</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/listarEvaluacionProcesoIngreso.htm">Evaluar Proceso</a>
                             </div>
                         </li>
                         

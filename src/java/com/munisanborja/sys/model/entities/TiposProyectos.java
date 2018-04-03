@@ -39,5 +39,4 @@ public class TiposProyectos implements Serializable{
         this.nombre = nombre;
     }
     
-    
 }

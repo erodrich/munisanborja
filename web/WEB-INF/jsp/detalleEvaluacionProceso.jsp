@@ -52,26 +52,27 @@
                                 <label for="impuestorenta">Impuesto a la renta: </label>
                                 <input type="text" class="form-control form-control-sm" id="impuestorenta" disabled="true" value="${evaluacionproceso.impuestorenta}" />
                             </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group col-xs-10 col-sm-5 col-md-5 col-lg-5">
                                 <label for="costomanoobrac">Costo mano de obra calificada: </label>
                                 <input type="text" class="form-control form-control-sm" id="costomanoobrac" disabled="true" value="${evaluacionproceso.costomanoobrac}" />
                             </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group col-xs-10 col-sm-5 col-md-5 col-lg-5">
                                 <label for="factormanoobrac">Factor mano obra calificada: </label>
                                 <input type="text" class="form-control form-control-sm" id="factormanoobrac" disabled="true" value="${evaluacionproceso.factormanoobrac}" />
                             </div>
-                             <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                             <div class="form-group col-xs-10 col-sm-5 col-md-5 col-lg-5">
                                 <label for="costomanoobranc">Costo mano de obra no calificada: </label>
                                 <input type="text" class="form-control form-control-sm" id="costomanoobranc" disabled="true" value="${evaluacionproceso.costomanoobranc}" />
                             </div>
-                             <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
+                             <div class="form-group col-xs-10 col-sm-5 col-md-5 col-lg-5">
                                 <label for="factormanoobranc">Factor mano obra no calificada: </label>
                                 <input type="text" class="form-control form-control-sm" id="factormanoobranc" disabled="true" value="${evaluacionproceso.factormanoobranc}" />
                             </div>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="javascript:history.back();">Retornar</button>
 
                             <div class="clearfix"></div>
                         </div>
+                            
+                        <button type="button" class="btn btn-primary btn-sm" onclick="javascript:history.back();">Retornar</button>
 
                     </div>        
                 </div>                

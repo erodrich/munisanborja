@@ -36,7 +36,7 @@
                 </div>
             </c:if>            
 
-            <form:form action="buscarEvaluacionProceso.htm" method="POST" modelAttribute="busquedaeva">
+            <form:form action="buscarEvaluacionProcesoIngreso.htm" method="POST" modelAttribute="busquedaeva">
 
                 <div class="input-group">
                     <label for="fechaInicio" class="col-form-label">Fecha Inicio:&nbsp;&nbsp;&nbsp;</label>
@@ -61,11 +61,11 @@
                         </thead>
                     <c:forEach var="eva" items="${list}">
                         <tr style="text-align: center;">
-                            <td><a href="${pageContext.request.contextPath}/detalleEvaluacionProceso/${eva.codigo}.htm">${eva.requerimiento.identificador}</a></td>
-                            <td>${eva.requerimiento.nombre}</td>
-                            <td>${eva.tipoProyectoInversion.nombre}</td>
-                            <td>${eva.estadoTramite.nombre}</td>
-                            <td><fmt:formatDate pattern = "dd-MM-yyyy" value="${eva.fechacreacion}"></fmt:formatDate></td>
+                            <td><a href="${pageContext.request.contextPath}/evaluarProceso/${eva.codigo}.htm">${eva.identificador}</a></td>
+                            <td>${eva.nombre}</td>
+                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${eva.montoInversion.precioMercado}" /></td>
+                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${eva.costoOperacion}" /></td>
+                            <td>${fn:toUpperCase(eva.ubicacion.departamento)}</td>
                         </tr>
                     </c:forEach>
                 </table>
