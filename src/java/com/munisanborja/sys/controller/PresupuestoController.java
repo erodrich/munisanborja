@@ -34,12 +34,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PresupuestoController {
 
-    ProyectoPreInversionDao ppid = new ProyectoPreInversionDao();
+    ProyectoPreInversionDao ppid;
+    RubroDao rd;
 
     @RequestMapping(value = "/listarProyectos.htm", method = RequestMethod.GET)
     public String listarProyectos(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //System.out.println("Pruebaaaaaaa");
+        
         BeanBusquedaFecha busquedareq = new BeanBusquedaFecha();
         model.addAttribute("busquedareq", busquedareq);
 
@@ -60,7 +61,7 @@ public class PresupuestoController {
             if (busquedareq.getFechaFinal().getTime() < busquedareq.getFechaInicio().getTime()) {
                 model.addAttribute("errorPIP", "El rango final debe ser superior al rango inicial");
             } else {
-
+                ppid = new ProyectoPreInversionDao();
                 List<ProyectoPreInversion> list = ppid.listarProyectoPreInversion(df.format(busquedareq.getFechaInicio()), df.format(busquedareq.getFechaFinal()));
                 model.addAttribute("busquedareq", busquedareq);
 
@@ -87,9 +88,8 @@ public class PresupuestoController {
     public String buscarProyectoIdentificador(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
 
-        ppid = new ProyectoPreInversionDao();
-
         if (!busquedareq.getIdentificador().isEmpty()) {
+            ppid = new ProyectoPreInversionDao();
             ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
             model.addAttribute("proyecto", p);
 
@@ -119,24 +119,47 @@ public class PresupuestoController {
     @RequestMapping(value = "/comprometerPresupuesto.htm", method = RequestMethod.GET)
     public String comprometerPresupuesto(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        rd = new RubroDao();
         BeanBusquedaIdentificador busquedareq = new BeanBusquedaIdentificador();
-        
+
         List<Rubro> sectores = new ArrayList<>();
-        RubroDao rd = new RubroDao();
         sectores = rd.listarRubro();
-        
+
         model.addAttribute("busquedareq", busquedareq);
         model.addAttribute("sectorList", sectores);
 
         return "comprometerPresupuesto";
 
     }
-    
+
     @RequestMapping(value = "/ejecutarComprometer.htm", method = RequestMethod.POST)
     public String ejecutarComprometer(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
 
-        
+        return "comprometerPresupuesto";
+
+    }
+
+    @RequestMapping(value = "/buscarProyectoIdNoPresup.htm", method = RequestMethod.POST)
+    public String buscarProyectoIdNoPresup(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
+            BindingResult result, Model model) {
+        rd = new RubroDao();
+        List<Rubro> sectores = new ArrayList<>();
+        sectores = rd.listarRubro();
+        model.addAttribute("sectorList", sectores);
+
+        ppid = new ProyectoPreInversionDao();
+        if (!busquedareq.getIdentificador().isEmpty()) {
+            ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
+            if (p.getMontoComprometido() != null && p.getMontoComprometido() > 0) {
+                model.addAttribute("errorPIP", "El proyecto ya tiene presupuesto asignado. Ir a Reasignar Presupuesto");
+            } else {
+                model.addAttribute("proyecto", p);
+            }
+
+        } else {
+            model.addAttribute("errorPIP", "El identificador no puede estar vacio");
+        }
 
         return "comprometerPresupuesto";
 

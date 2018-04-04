@@ -14,7 +14,6 @@
 <html>
     <head>
         <%@include file="includes/header.jsp" %> 
-
         <title>Comprometer Presupuesto</title>
     </head>
     <body>
@@ -35,9 +34,12 @@
                     <label for="identificador" class="col-form-label">Identificador:&nbsp;&nbsp;&nbsp;</label>
                     <form:input type="text" class="form-control-sm" path="identificador" placeholder="PXXXXX" />
                     <form:errors path="identificador" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
-                    <button type="submit" formaction="${pageContext.request.contextPath}/buscarProyectoIdentificador.htm"  class="btn btn-primary  btn-sm">Buscar</button>
+                    <button type="submit" formaction="${pageContext.request.contextPath}/buscarProyectoIdNoPresup.htm"  class="btn btn-primary  btn-sm">Buscar</button>
                 </div>
             </form:form>
+            <c:if test="${not empty proyecto}">
+                <h3>${proyecto.requerimiento.nombre}</h3>
+            </c:if>
             <br />
         </div>
         <div class="container col-sm-8" style="font-size: small;">
@@ -47,7 +49,9 @@
                     <div class="card col-6">
                         <div class="form-group">
                             <label for="sector">Sector</label>
-                            <form:select path="sector" items="${sectorList}" />
+                            <form:select path="sector" id="select_id">
+                                <form:options items="${sectorList}" itemValue="codigo" itemLabel="nombre" />
+                            </form:select>
                         </div>
                         <div class="form-group">
                             <label for="comprometer">Monto a comprometer</label>
@@ -59,26 +63,29 @@
                             <label for="montoDisponible">Monto disponible</label>
                             <input type="text" class="form-control" id="montoDisponible" name="montoDisponible" disabled="true" />
                         </div>
-                        
+
                     </div>
                     <button type="submit" formaction="${pageContext.request.contextPath}/ejecutarComprometer.htm" class="btn btn-primary btn-sm" id="guardar">Guardar</button>
                 </div>
             </form:form>
 
         </div> 
-        <script>
-            function calc() {
-                var comp = document.getElementById("comprometido").textContent;
-                var porc = document.getElementById("porcentaje").value;
-                var ar = comp.split('.');
-                c = '';
-                for (i = 0; i < ar.length; i++) {
-                    c = c.concat(ar[i]);
-                }
-                var x = parseInt(c) + ((parseInt(c) * porc) / 100);
-                document.getElementById("total").setAttribute('value', x);
+        <script type="text/javascript">
+            document.getElementById("select_id").addEventListener("change", function () {
+                var jsectores = [];
+            <c:forEach var="sector" items="${sectorList}">
+                var sect = {
+                    id: "${sector.codigo}",
+                    montoDisp: "${sector.presupuestoAsignado} - ${sector.totalComprometido}";
+                };
+                document.getElementById("montoDisponible").value = jsectores[0].id;
+            </c:forEach>
 
-            }
+
+
+
+            });
+
         </script>
         <%@include file="includes/footer.jsp" %>
     </body>
