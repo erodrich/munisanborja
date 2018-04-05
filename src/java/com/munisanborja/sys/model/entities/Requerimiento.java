@@ -85,6 +85,8 @@ public class Requerimiento {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="Ubicacion_codigo", referencedColumnName="codigo")
     private Ubicacion ubicacion;
+    
+    private boolean validado;
 
     /**
      * @return the codigo
@@ -420,6 +422,20 @@ public class Requerimiento {
      */
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    /**
+     * @return the validado
+     */
+    public boolean isValidado() {
+        return validado;
+    }
+
+    /**
+     * @param validado the validado to set
+     */
+    public void setValidado(boolean validado) {
+        this.validado = validado;
     }
     
     
