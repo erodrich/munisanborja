@@ -58,7 +58,7 @@
                         <tr style="text-align: center;">
                             <td>${proyecto.identificador}</td>
                             <td>${proyecto.requerimiento.nombre}</td>
-                            <td>${proyecto.montoComprometido}</td>
+                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido}" /></td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
                             <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido - proyecto.montoDevengado- proyecto.montoEjecutado}" /></td>

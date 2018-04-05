@@ -24,5 +24,6 @@
     <mapping class="com.munisanborja.sys.model.entities.UnidadEjecutoraValida" />
     <mapping class="com.munisanborja.sys.model.entities.InformeTecnico" />
     <mapping class="com.munisanborja.sys.model.entities.DetalleInformeTecnico" />
+    <mapping class="com.munisanborja.sys.model.entities.Rubro" />
   </session-factory>
 </hibernate-configuration>

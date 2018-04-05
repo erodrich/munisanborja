@@ -51,6 +51,10 @@ public class ProyectoPreInversion {
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="EstadoViabilidad_codigo", referencedColumnName="codigo", nullable=false)
     private EstadoViabilidad estadoViabilidad;
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="Rubro_codigo", referencedColumnName="codigo", nullable=false)
+    private Rubro rubro;
 
     /**
      * @return the codigo
@@ -204,6 +208,20 @@ public class ProyectoPreInversion {
      */
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    /**
+     * @return the rubro
+     */
+    public Rubro getRubro() {
+        return rubro;
+    }
+
+    /**
+     * @param rubro the rubro to set
+     */
+    public void setRubro(Rubro rubro) {
+        this.rubro = rubro;
     }
     
 }

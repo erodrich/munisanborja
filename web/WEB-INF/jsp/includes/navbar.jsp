@@ -27,6 +27,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Presupuestos</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown09">
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/comprometerPresupuesto.htm">Comprometer partida</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/reasignarPresupuesto.htm">Reasignar presupuesto</a>
                 </div>
             </li>
