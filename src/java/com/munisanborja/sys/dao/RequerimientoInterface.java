@@ -17,6 +17,8 @@ public interface RequerimientoInterface {
     public List<Requerimiento> listarRequerimiento();
     public List<Requerimiento> listarRequerimiento(Date fechaInicio, Date fechaFinal);
     public List<Requerimiento> listarRequerimiento(String fechaInicio, String fechaFinal);
+    public List<Requerimiento> listarProcesoReq(String fechaInicio, String fechaFinal);
+    public List<Requerimiento> listarProcesoReqPend(String fechaInicio, String fechaFinal);
     public Requerimiento get(Integer id);
     public Requerimiento get(String id);
     public void create(Requerimiento c);

@@ -40,7 +40,6 @@ public class PresupuestoController {
     @RequestMapping(value = "/listarProyectos.htm", method = RequestMethod.GET)
     public String listarProyectos(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        
         BeanBusquedaFecha busquedareq = new BeanBusquedaFecha();
         model.addAttribute("busquedareq", busquedareq);
 
@@ -77,8 +76,15 @@ public class PresupuestoController {
     @RequestMapping(value = "/reasignarPresupuesto.htm", method = RequestMethod.GET)
     public String reasignarPresupuesto(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        rd = new RubroDao();
+
+        List<Rubro> sectores = new ArrayList<>();
+        sectores = rd.listarRubro();
+        model.addAttribute("sectorList", sectores);
         BeanBusquedaIdentificador busquedareq = new BeanBusquedaIdentificador();
+
         model.addAttribute("busquedareq", busquedareq);
+        
 
         return "reasignarPresupuesto";
 
@@ -87,6 +93,11 @@ public class PresupuestoController {
     @RequestMapping(value = "/buscarProyectoIdentificador.htm", method = RequestMethod.POST)
     public String buscarProyectoIdentificador(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
+        rd = new RubroDao();
+
+        List<Rubro> sectores = new ArrayList<>();
+        sectores = rd.listarRubro();
+        model.addAttribute("sectorList", sectores);
 
         if (!busquedareq.getIdentificador().isEmpty()) {
             ppid = new ProyectoPreInversionDao();
@@ -104,6 +115,11 @@ public class PresupuestoController {
     @RequestMapping(value = "/ejecutarReasignar.htm", method = RequestMethod.POST)
     public String ejecutarReasignar(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
+        rd = new RubroDao();
+
+        List<Rubro> sectores = new ArrayList<>();
+        sectores = rd.listarRubro();
+        model.addAttribute("sectorList", sectores);
 
         ppid = new ProyectoPreInversionDao();
         ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());

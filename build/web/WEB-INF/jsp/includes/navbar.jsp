@@ -16,6 +16,8 @@
                 <div class="dropdown-menu" aria-labelledby="dropdown09">
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/listarRequerimiento.htm">Listar</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Validar</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/listarProceso.htm">Listar Evaluar Proceso</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/evaluarProceso.htm">Evaluar Proceso</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

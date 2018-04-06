@@ -86,7 +86,11 @@ public class Requerimiento {
     @JoinColumn(name="Ubicacion_codigo", referencedColumnName="codigo")
     private Ubicacion ubicacion;
     
-    private boolean validado;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="RequerimientoEvaluado_codigo", referencedColumnName="codigo")
+    private RequerimientoEvaluado requerimientoEvaluado;
+    
+    private String tipo;
 
     /**
      * @return the codigo
@@ -424,18 +428,33 @@ public class Requerimiento {
         this.identificador = identificador;
     }
 
+
     /**
-     * @return the validado
+     * @return the tipo
      */
-    public boolean isValidado() {
-        return validado;
+    public String getTipo() {
+        return tipo;
     }
 
     /**
-     * @param validado the validado to set
+     * @param tipo the tipo to set
      */
-    public void setValidado(boolean validado) {
-        this.validado = validado;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the requerimientoEvaluado
+     */
+    public RequerimientoEvaluado getRequerimientoEvaluado() {
+        return requerimientoEvaluado;
+    }
+
+    /**
+     * @param requerimientoEvaluado the requerimientoEvaluado to set
+     */
+    public void setRequerimientoEvaluado(RequerimientoEvaluado requerimientoEvaluado) {
+        this.requerimientoEvaluado = requerimientoEvaluado;
     }
     
     
