@@ -42,31 +42,25 @@ public class ProyectoPreInversionDao implements ProyectoPreInversionInterface {
     @Override
     public ProyectoPreInversion get(String id) {
         Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
-        ss.beginTransaction();
-        Criteria cr = session.createCriteria(ProyectoPreInversion.class)
-                .add(Restrictions.eq("identificador", id));
+        Transaction t = ss.beginTransaction();
+        ProyectoPreInversion rd = new ProyectoPreInversion();
+        try {
+            Criteria cr = ss.createCriteria(ProyectoPreInversion.class)
+                    .add(Restrictions.eq("identificador", id));
+            rd = (ProyectoPreInversion) cr.uniqueResult();
+            t.commit();
 
-        ProyectoPreInversion rd = (ProyectoPreInversion) cr.uniqueResult();
-        ss.getTransaction().commit();
+        } catch (Exception ex) {
+            t.rollback();
+            ex.printStackTrace();
+
+        } finally {
+            if (ss.isOpen()) {
+                ss.close();
+            }
+        }
+
         return rd;
-    }
-
-    @Override
-    public void create(ProyectoPreInversion c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(ProyectoPreInversion c) {
-        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
-        ss.beginTransaction();
-        ss.update(c);
-        ss.getTransaction().commit();
-    }
-
-    @Override
-    public void delete(ProyectoPreInversion c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -113,6 +107,24 @@ public class ProyectoPreInversionDao implements ProyectoPreInversionInterface {
             }
         }
         return list;
+    }
+
+    @Override
+    public void create(ProyectoPreInversion c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ProyectoPreInversion c) {
+        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
+        ss.beginTransaction();
+        ss.update(c);
+        ss.getTransaction().commit();
+    }
+
+    @Override
+    public void delete(ProyectoPreInversion c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

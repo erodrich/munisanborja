@@ -19,6 +19,11 @@ public class BeanBusquedaIdentificador {
     private Float porcentaje;
     private Double total;
     private String sector;
+    private Double impuestorenta;
+    private Double costomanoobrac;
+    private Double costomanoobranc;
+    private Double fcostomanoobrac;
+    private Double fcostomanoobranc;
     
 
     /**
@@ -90,5 +95,76 @@ public class BeanBusquedaIdentificador {
     public void setSector(String sector) {
         this.sector = sector;
     }
+
+    /**
+     * @return the impuestorenta
+     */
+    public Double getImpuestorenta() {
+        return impuestorenta;
+    }
+
+    /**
+     * @param impuestorenta the impuestorenta to set
+     */
+    public void setImpuestorenta(Double impuestorenta) {
+        this.impuestorenta = impuestorenta;
+    }
+
+    /**
+     * @return the costomanoobrac
+     */
+    public Double getCostomanoobrac() {
+        return costomanoobrac;
+    }
+
+    /**
+     * @param costomanoobrac the costomanoobrac to set
+     */
+    public void setCostomanoobrac(Double costomanoobrac) {
+        this.costomanoobrac = costomanoobrac;
+    }
+
+    /**
+     * @return the costomanoobranc
+     */
+    public Double getCostomanoobranc() {
+        return costomanoobranc;
+    }
+
+    /**
+     * @param costomanoobranc the costomanoobranc to set
+     */
+    public void setCostomanoobranc(Double costomanoobranc) {
+        this.costomanoobranc = costomanoobranc;
+    }
+
+    /**
+     * @return the fcostomanoobrac
+     */
+    public Double getFcostomanoobrac() {
+        return fcostomanoobrac;
+    }
+
+    /**
+     * @param fcostomanoobrac the fcostomanoobrac to set
+     */
+    public void setFcostomanoobrac(Double fcostomanoobrac) {
+        this.fcostomanoobrac = fcostomanoobrac;
+    }
+
+    /**
+     * @return the fcostomanoobranc
+     */
+    public Double getFcostomanoobranc() {
+        return fcostomanoobranc;
+    }
+
+    /**
+     * @param fcostomanoobranc the fcostomanoobranc to set
+     */
+    public void setFcostomanoobranc(Double fcostomanoobranc) {
+        this.fcostomanoobranc = fcostomanoobranc;
+    }
+
     
 }

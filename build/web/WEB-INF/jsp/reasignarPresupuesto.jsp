@@ -88,8 +88,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="sector">Sector Destino</label>
-                            <input type="text" class="form-control" id="sector" name="sector"  />
+                            <label for="sector">Sector</label>
+                            <form:select path="sector" id="select_id">
+                                <form:options items="${sectorList}" itemValue="codigo" itemLabel="nombre" />
+                            </form:select>
                         </div>
                         <div class="form-group">
                             <label for="total">Total</label>

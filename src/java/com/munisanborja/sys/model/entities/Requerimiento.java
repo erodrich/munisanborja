@@ -85,6 +85,12 @@ public class Requerimiento {
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="Ubicacion_codigo", referencedColumnName="codigo")
     private Ubicacion ubicacion;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="RequerimientoEvaluado_codigo", referencedColumnName="codigo")
+    private RequerimientoEvaluado requerimientoEvaluado;
+    
+    private String tipo;
 
     /**
      * @return the codigo
@@ -420,6 +426,35 @@ public class Requerimiento {
      */
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the requerimientoEvaluado
+     */
+    public RequerimientoEvaluado getRequerimientoEvaluado() {
+        return requerimientoEvaluado;
+    }
+
+    /**
+     * @param requerimientoEvaluado the requerimientoEvaluado to set
+     */
+    public void setRequerimientoEvaluado(RequerimientoEvaluado requerimientoEvaluado) {
+        this.requerimientoEvaluado = requerimientoEvaluado;
     }
     
     

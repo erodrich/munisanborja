@@ -90,15 +90,6 @@ public class RequerimientoDao implements RequerimientoInterface {
         list = cr.list();
         session.getTransaction().commit();
         return list;
-
-        /*
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        Criteria cr = session.createCriteria(Requerimiento.class)
-                .add(Restrictions.between("fechaCreacion", fechaInicio, fechaFinal))
-                .addOrder(Order.desc("fechaCreacion"));
-        return cr.list();
-         */
     }
 
     @Override
@@ -134,6 +125,74 @@ public class RequerimientoDao implements RequerimientoInterface {
         }
         return list;
         
+    }
+
+    @Override
+    public List<Requerimiento> listarProcesoReq(String fechaInicio, String fechaFinal) {
+        List<Requerimiento> list = null;
+        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = ss.beginTransaction();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            try {
+                Criteria cr = session.createCriteria(Requerimiento.class)
+                        .add(Restrictions.isNotNull("requerimientoEvaluado"))
+                        .add(Restrictions.between("fechaCreacion", df.parse(fechaInicio), df.parse(fechaFinal)))
+                        .addOrder(Order.desc("fechaCreacion"));
+                list = cr.list();
+                t.commit();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            try {
+                t.rollback();
+            } catch (RuntimeException rbe) {
+                rbe.getMessage();
+            }
+            throw e;
+        } finally {
+            if (ss.isOpen()) {
+                ss.close();
+            }
+        }
+        return list;
+    }
+    
+    @Override
+    public List<Requerimiento> listarProcesoReqPend(String fechaInicio, String fechaFinal) {
+        List<Requerimiento> list = null;
+        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = ss.beginTransaction();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            try {
+                Criteria cr = session.createCriteria(Requerimiento.class)
+                        .add(Restrictions.isNull("requerimientoEvaluado"))
+                        .add(Restrictions.between("fechaCreacion", df.parse(fechaInicio), df.parse(fechaFinal)))
+                        .addOrder(Order.desc("fechaCreacion"));
+                list = cr.list();
+                t.commit();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            try {
+                t.rollback();
+            } catch (RuntimeException rbe) {
+                rbe.getMessage();
+            }
+            throw e;
+        } finally {
+            if (ss.isOpen()) {
+                ss.close();
+            }
+        }
+        return list;
     }
 
 }
