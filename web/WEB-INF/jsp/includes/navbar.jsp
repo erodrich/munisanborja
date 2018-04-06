@@ -18,6 +18,9 @@
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Validar</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/listarProceso.htm">Listar Evaluar Proceso</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/evaluarProceso.htm">Evaluar Proceso</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/listarInformeTecnico.htm">Listar Informe Técnico </a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/listarInformeTecnicoValidar.htm">Viabilizar Informe Técnico</a>
+                    
                 </div>
             </li>
             <li class="nav-item dropdown">
