@@ -26,18 +26,18 @@ public class TestInformeTecnico {
         InformeTecnicoDao id = new InformeTecnicoDao();
 
         //it = id.listarInformeTecnico();
-        //it = id.listarInformeTecnico("2018-04-01","2018-04-31");
-        InformeTecnico i = id.get(1);
+        it = id.listarInformeTecnico("2018-03-01","2018-03-31");
+        //InformeTecnico i = id.get(1);
 
-        /*
+        
         for(InformeTecnico x : it){
             System.out.println(x.getNombre());
             for(DetalleInformeTecnico d : x.getDetalleInformeTecnico()){
                 System.out.println(d.getConcepto() + " fin");
             }
         }
-         */
-        System.out.println(i.getNombre());
+         
+        //System.out.println(i.getNombre());
     }
 
 }

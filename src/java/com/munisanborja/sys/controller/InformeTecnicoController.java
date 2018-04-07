@@ -93,7 +93,7 @@ public class InformeTecnicoController {
 
     @RequestMapping(value = "/buscarInformeTecnico.htm", method = RequestMethod.POST)
 
-    public String buscarRequerimiento(@ModelAttribute("busquedait") BeanBusquedaFecha busquedait,
+    public String buscarInformeTecnico(@ModelAttribute("busquedait") BeanBusquedaFecha busquedait,
             BindingResult result, Model model) {
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
