@@ -11,11 +11,13 @@ import com.munisanborja.sys.model.bean.BeanBusquedaFecha;
 import com.munisanborja.sys.model.bean.BeanBusquedaIdentificador;
 import com.munisanborja.sys.model.entities.ProyectoPreInversion;
 import com.munisanborja.sys.model.entities.Rubro;
+import com.munisanborja.sys.model.logic.GestionProyecto;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -151,6 +153,11 @@ public class PresupuestoController {
     @RequestMapping(value = "/ejecutarComprometer.htm", method = RequestMethod.POST)
     public String ejecutarComprometer(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
+        ppid = new ProyectoPreInversionDao();
+        ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
+        
+        GestionProyecto gp = new GestionProyecto(p);
+        gp.ComprometerPresupuesto(busquedareq.getComprometer());
 
         return "comprometerPresupuesto";
 
@@ -162,8 +169,9 @@ public class PresupuestoController {
         rd = new RubroDao();
         List<Rubro> sectores = new ArrayList<>();
         sectores = rd.listarRubro();
+        
         model.addAttribute("sectorList", sectores);
-
+        
         ppid = new ProyectoPreInversionDao();
         if (!busquedareq.getIdentificador().isEmpty()) {
             ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());

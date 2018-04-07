@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="analisisSostenibilidad">Analisis Sostenibilidad:</label>
+                                <label for="analisisSostenibilidad">Análisis Sostenibilidad:</label>
                                 <input type="text" class="form-control form-control-sm" id="analisisSostenibilidad" disabled="true" value="${requerimiento.analisisSostenibilidad}" />
                             </div>
                             <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
@@ -75,7 +75,7 @@
                                 <input type="text" class="form-control form-control-sm" id="fuenteFinanciamiento" disabled="true" value="${requerimiento.fuenteFinanciamiento}" />
                             </div>
                             <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="programaInversion">Cuenta con programa de inversion:</label>
+                                <label for="programaInversion">Cuenta con programa de inversión:</label>
                                 <c:choose>
                                     <c:when test="${requerimiento.programaInversion}">
                                         <input type="text" class="form-control form-control-sm" id="programaInversion" disabled="true" value="Si" />

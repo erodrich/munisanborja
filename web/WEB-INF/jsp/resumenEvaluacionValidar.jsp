@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
                                 <label for="nombrePIP">Mano de Obra no Calificada: </label>
-                                <input type="text" class="form-control form-control-sm" id="identificador" disabled="true" value="1" />
+                                <input type="text" class="form-control form-control-sm" id="identificador" disabled="true" value="314165" />
 
                                 <c:choose>
                                     <c:when test="${gr.manoobranocalificadaValid}">
@@ -47,7 +47,7 @@
 
                             <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
                                 <label for="nombre">Tasa de Descuento Social:</label>
-                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="2" />
+                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="22088" />
 
                                 <c:choose>
                                     <c:when test="${gr.tasadescuentoValid}">
@@ -73,7 +73,7 @@
 
                             <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
                                 <label for="nombre">Precio Social:</label>
-                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="3" />
+                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="34577" />
 
                                 <c:choose>
                                     <c:when test="${gr.precioSocialValid}">
@@ -99,7 +99,7 @@
 
                             <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
                                 <label for="nombre">Valor Social del Tiempo:</label>
-                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="4" />
+                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="76001" />
 
                                 <c:choose>
                                     <c:when test="${gr.valorSocialTiempoValid}">

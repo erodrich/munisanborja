@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <label for="total">Total</label>
-                            <input type="text" class="form-control" id="total" name="total"  />
+                            <input type="text" class="form-control" id="total" name="total" readonly="readonly" />
                         </div>
                         <button type="button" class="btn btn-primary btn-sm" id="calcular" onclick="calc()">Calcular</button>
                         <button type="submit" formaction="${pageContext.request.contextPath}/ejecutarReasignar.htm" class="btn btn-primary btn-sm" id="reasignar">Reasginar</button>

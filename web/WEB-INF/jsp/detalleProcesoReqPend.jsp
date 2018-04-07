@@ -49,7 +49,7 @@
                             </div>
                             <div class="form-group col-xs-10 col-sm-6 col-md-12 col-lg-12">
                                 <label for="total">Impuesto a la Renta: </label>
-                                <input type="number" class="form-control form-control-sm" id="impuestorenta" name="impuestorenta"  />
+                                <input type="decimal" class="form-control form-control-sm" id="impuestorenta" name="impuestorenta"  />
                             </div>
                             <div class="form-group col-xs-10 col-sm-5 col-md-12 col-lg-12">
                                 <label for="fechaAprobacion">Costo Mano de obra calificada: </label>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group col-xs-10 col-sm-5 col-md-12 col-lg-12">
                                 <label for="aprobadoPor">Factor mano de obra calificada: </label>
-                                <input type="number" class="form-control form-control-sm" id="fcostomanoobrac" name="fcostomanoobrac"/>
+                                <input type="decimal" class="form-control form-control-sm" id="fcostomanoobrac" name="fcostomanoobrac" readonly="readonly"/>
                             </div>
                             <div class="form-group col-xs-10 col-sm-5 col-md-12 col-lg-12">
                                 <label for="fechaAprobacion">Costo Mano de obra no calificada: </label>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group col-xs-10 col-sm-5 col-md-12 col-lg-12">
                                 <label for="aprobadoPor">Factor mano de obra no calificada: </label>
-                                <input type="number" class="form-control form-control-sm" id="fcostomanoobranc" name="fcostomanoobranc"/>
+                                <input type="decimal" class="form-control form-control-sm" id="fcostomanoobranc" name="fcostomanoobranc" readonly="readonly"/>
                             </div>
                             <div class="form-group col-xs-10 col-sm-5 col-md-5 col-lg-5">
                                 <button type="submit" class="btn btn-primary btn-sm" formaction="${pageContext.request.contextPath}/ejecutarEvaluarProceso.htm" id="btnguardar">Guardar</button>
