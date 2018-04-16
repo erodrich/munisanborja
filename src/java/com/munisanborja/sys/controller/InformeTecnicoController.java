@@ -62,7 +62,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public class InformeTecnicoController {
 
-    InformeTecnicoDao it = new InformeTecnicoDao();
+    InformeTecnicoDao it;
 
     @RequestMapping(value = "/listarInformeTecnico.htm", method = RequestMethod.GET)
 
@@ -92,6 +92,8 @@ public class InformeTecnicoController {
 
     public String buscarInformeTecnico(@ModelAttribute("busquedait") BeanBusquedaFecha busquedait,
             BindingResult result, Model model) {
+        
+        it = new InformeTecnicoDao();
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
