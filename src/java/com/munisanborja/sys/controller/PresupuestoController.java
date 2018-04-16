@@ -11,6 +11,7 @@ import com.munisanborja.sys.model.bean.BeanBusquedaFecha;
 import com.munisanborja.sys.model.bean.BeanBusquedaIdentificador;
 import com.munisanborja.sys.model.entities.ProyectoPreInversion;
 import com.munisanborja.sys.model.entities.Rubro;
+import com.munisanborja.sys.model.logic.GestionProyecto;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -151,6 +152,12 @@ public class PresupuestoController {
     @RequestMapping(value = "/ejecutarComprometer.htm", method = RequestMethod.POST)
     public String ejecutarComprometer(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
+
+        ppid = new ProyectoPreInversionDao();
+        ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
+        
+        GestionProyecto gp = new GestionProyecto(p);
+        gp.ComprometerPresupuesto(busquedareq.getComprometer());
 
         return "comprometerPresupuesto";
 

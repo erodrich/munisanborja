@@ -24,6 +24,7 @@ public class BeanBusquedaIdentificador {
     private Double costomanoobranc;
     private Double fcostomanoobrac;
     private Double fcostomanoobranc;
+    private Double comprometer;
     
 
     /**
@@ -164,6 +165,20 @@ public class BeanBusquedaIdentificador {
      */
     public void setFcostomanoobranc(Double fcostomanoobranc) {
         this.fcostomanoobranc = fcostomanoobranc;
+    }
+
+    /**
+     * @return the comprometer
+     */
+    public Double getComprometer() {
+        return comprometer;
+    }
+
+    /**
+     * @param comprometer the comprometer to set
+     */
+    public void setComprometer(Double comprometer) {
+        this.comprometer = comprometer;
     }
 
     
