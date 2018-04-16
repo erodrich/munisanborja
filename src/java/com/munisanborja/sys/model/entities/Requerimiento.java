@@ -25,7 +25,7 @@ public class Requerimiento {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int codigo;
-    
+ 
     private String identificador;
     
     private String nombre;
@@ -62,7 +62,8 @@ public class Requerimiento {
     
     private String revisadoPor;
     
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+                        CascadeType.REFRESH})
     @JoinColumn(name="EstadoTramite_codigo", referencedColumnName="codigo", nullable=false)
     private EstadoTramite estadoTramite;
     
@@ -91,6 +92,11 @@ public class Requerimiento {
     private RequerimientoEvaluado requerimientoEvaluado;
     
     private String tipo;
+    
+    @ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+                        CascadeType.REFRESH})
+    @JoinColumn(name="persona_idPersona", referencedColumnName="idPersona")
+    private Persona persona;
 
     /**
      * @return the codigo
