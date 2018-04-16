@@ -115,6 +115,7 @@
                     c = c.concat(ar[i]);
                 }
                 var x = parseInt(c) + ((parseInt(c) * porc) / 100);
+                //resultado = comprometido + (comprometido*porcentage/100)
                 document.getElementById("total").setAttribute('value', x);
 
             }
