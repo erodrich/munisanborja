@@ -1,1 +1,44 @@
-1 Se clonó el repo y se añadio README desde cuenta invitada
+Sistema de Gestión - Municipalidad de San Borja
+
+Este proyecto es desarrollado para la clase de Taller de Proyecto de la Carrera de Ingeniería de Sistemas - EPE de la Universidad Peruana de Ciencias Aplicadas. El propósito del mismo es el análisis de los procesos de la municipalidad, el aporte de soluciones y el desarrollo de herramientas software que permitan la aplicación de esta soluciones.
+Este proyecto en concreto se concentra en algunos de los procesos que involucran la Gestión de Proyectos de Pre inversión, como son las tareas de comprometer partida presupuestal, evaluación de requerimientos de proyectos, evaluación de proyectos, etc.
+
+Instalación
+
+Requisitos previos:
+ - Motor base de datos Mysql 5
+ - Netbeans 8.2
+ - Java Development Kit 1.8
+
+Descargar el proyecto con la aplicacion git o git bash para windows con el comando:
+git clone https://github.com/erodrich/munisanborja.git [nombre de carpeta local]
+
+Configuración de base de datos
+En la carpeta lib del proyecto encontrarán el script sql:
+munisanborja-050418.sql
+Este creará la base de datos "munisanborja", deberán eliminar o renombrar cualquier otra bd con el mismo nombre.
+
+Validar que se cuenta con un servidor Glassfish. En este caso, Netbeans trae un por defecto siempre que se haya seleccionado en el momento de la instalación.
+
+De elegir cualquier otra configuración esta deberá ser actualizada en el archivo hibernate.cfg.xml que se en encuentra en la raiz de la carpeta src del proyecto.
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/munisanborja</property>
+    <property name="hibernate.connection.username">[usuario]</property>
+    <property name="hibernate.connection.password">[password]</property>
+
+Abrir Netbeans
+Ir a la opción "Abrir Proyecto"
+Ir a la carpeta donde se descargo el proyecto en el paso anterior
+Buscar el proyecto con nombre "munisanborja" o el nombre con el cuál se descargó
+Seleccionar "abrir"
+Hacer click derecho en el proyecto "munisanborja"
+Seleccionar "Run" o "Ejecutar"
+
+Con esto, debería abrir el navegador web seleccionado en Netbeans y visualizarse la interfaz del sistema.
+
+
+
+
+
+
+
+
