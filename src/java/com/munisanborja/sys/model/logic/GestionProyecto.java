@@ -5,6 +5,7 @@
  */
 package com.munisanborja.sys.model.logic;
 
+import com.munisanborja.sys.dao.ProyectoPreInversionDao;
 import com.munisanborja.sys.model.entities.ProyectoPreInversion;
 
 /**
@@ -12,21 +13,30 @@ import com.munisanborja.sys.model.entities.ProyectoPreInversion;
  * @author OPERADOR
  */
 public class GestionProyecto {
-    
+
     ProyectoPreInversion proyecto;
+    ProyectoPreInversionDao pDao;
     private Double total;
-    
-    public GestionProyecto(ProyectoPreInversion p){
+
+    public GestionProyecto(ProyectoPreInversion p) {
         this.proyecto = p;
-        setTotal();
+        //setTotal();
     }
-    
-    public void setTotal(){
-        Double total = this.proyecto.getMontoComprometido()-this.proyecto.getMontoDevengado()-this.proyecto.getMontoEjecutado();
+
+    public void setTotal() {
+        Double total = this.proyecto.getMontoComprometido() - this.proyecto.getMontoDevengado() - this.proyecto.getMontoEjecutado();
     }
-    
-    public Double getTotal(){
+
+    public Double getTotal() {
         return this.total;
+    }
+
+    public void ComprometerPresupuesto(Double presupuesto) {
+
+        pDao = new ProyectoPreInversionDao();
+        this.proyecto.setMontoComprometido(presupuesto);
+        pDao.update(this.proyecto);
+
     }
 
 }

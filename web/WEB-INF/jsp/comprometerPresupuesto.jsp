@@ -38,7 +38,8 @@
                 </div>
             </form:form>
             <c:if test="${not empty proyecto}">
-                <h3>${proyecto.requerimiento.nombre}</h3>
+                <h5>Proyecto: </h5>
+                <h6>${proyecto.requerimiento.nombre}</h6>
             </c:if>
             <br />
         </div>
@@ -49,7 +50,7 @@
                     <div class="card col-6">
                         <div class="form-group">
                             <label for="sector">Sector</label>
-                            <form:select path="sector" id="select_id">
+                            <form:select class="form-control" path="sector" id="sector">
                                 <form:options items="${sectorList}" itemValue="codigo" itemLabel="nombre" />
                             </form:select>
                         </div>
@@ -61,7 +62,7 @@
                     <div class="card col-6">
                         <div class="form-group">
                             <label for="montoDisponible">Monto disponible</label>
-                            <input type="text" class="form-control" id="montoDisponible" name="montoDisponible" disabled="true" />
+                            <input type="text" class="form-control" id="montoDisponible" name="montoDisponible" readonly="true" />
                         </div>
 
                     </div>
@@ -71,20 +72,31 @@
 
         </div> 
         <script type="text/javascript">
-            document.getElementById("select_id").addEventListener("change", function () {
-                var jsectores = [];
-            <c:forEach var="sector" items="${sectorList}">
-                var sect = {
-                    id: "${sector.codigo}",
-                    montoDisp: "${sector.presupuestoAsignado} - ${sector.totalComprometido}";
-                };
-                document.getElementById("montoDisponible").value = jsectores[0].id;
-            </c:forEach>
 
 
-
-
+            document.getElementById("sector").addEventListener("change", function () {
+                
+                var select =  document.getElementById("sector").value;
+                var monto = document.getElementById("montoDisponible");
+                switch (select) {
+                    case "1":
+                        monto.value = 235000;
+                        break;
+                    case "2":
+                        monto.value = 150000;
+                        break;
+                    case "3":
+                        monto.value = 324580;
+                        break;
+                    case "4":
+                        monto.value = 321098;
+                        break;
+                    case "5":
+                        monto.value = 129000;
+                        break;
+                }
             });
+
 
         </script>
         <%@include file="includes/footer.jsp" %>
