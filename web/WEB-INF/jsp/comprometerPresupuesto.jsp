@@ -56,7 +56,8 @@
                         </div>
                         <div class="form-group">
                             <label for="comprometer">Monto a comprometer</label>
-                            <input type="text" class="form-control" id="comprometer" name="comprometer"  />
+                            <input type="number" class="form-control" id="comprometer" name="comprometer"/>
+
                         </div>
                     </div>
                     <div class="card col-6">
@@ -75,24 +76,24 @@
 
 
             document.getElementById("sector").addEventListener("change", function () {
-                
-                var select =  document.getElementById("sector").value;
+
+                var select = document.getElementById("sector").value;
                 var monto = document.getElementById("montoDisponible");
                 switch (select) {
                     case "1":
-                        monto.value = 235000;
+                        monto.value = "235,000";
                         break;
                     case "2":
-                        monto.value = 150000;
+                        monto.value = "150,000";
                         break;
                     case "3":
-                        monto.value = 324580;
+                        monto.value = "324,580";
                         break;
                     case "4":
-                        monto.value = 321098;
+                        monto.value = "321,098";
                         break;
                     case "5":
-                        monto.value = 129000;
+                        monto.value = "129,000";
                         break;
                 }
             });
