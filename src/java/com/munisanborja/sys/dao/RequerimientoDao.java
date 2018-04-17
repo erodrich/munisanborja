@@ -43,10 +43,16 @@ public class RequerimientoDao implements RequerimientoInterface {
 
     @Override
     public void update(Requerimiento c) {
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        session.update(c);
-        session.getTransaction().commit();
+        Session ss = HibernateUtil.getSessionFactory().getCurrentSession();
+        try{
+            ss.beginTransaction();
+            ss.update(c);
+            ss.getTransaction().commit();
+        }finally{
+            if (ss.isOpen()) {
+                ss.close();
+            }
+        }
     }
 
     @Override

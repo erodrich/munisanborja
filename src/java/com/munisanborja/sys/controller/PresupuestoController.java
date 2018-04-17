@@ -85,7 +85,6 @@ public class PresupuestoController {
         BeanBusquedaIdentificador busquedareq = new BeanBusquedaIdentificador();
 
         model.addAttribute("busquedareq", busquedareq);
-        
 
         return "reasignarPresupuesto";
 
@@ -103,8 +102,11 @@ public class PresupuestoController {
         if (!busquedareq.getIdentificador().isEmpty()) {
             ppid = new ProyectoPreInversionDao();
             ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
-            model.addAttribute("proyecto", p);
-
+            if(p != null){
+                 model.addAttribute("proyecto", p);
+            } else {
+                model.addAttribute("errorPIP", "El identificador no es válido");
+            }
         } else {
             model.addAttribute("errorPIP", "El identificador no puede estar vacio");
         }
@@ -116,19 +118,34 @@ public class PresupuestoController {
     @RequestMapping(value = "/ejecutarReasignar.htm", method = RequestMethod.POST)
     public String ejecutarReasignar(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
-        rd = new RubroDao();
 
-        List<Rubro> sectores = new ArrayList<>();
-        sectores = rd.listarRubro();
-        model.addAttribute("sectorList", sectores);
+        if (!(busquedareq == null)) {
+            if (busquedareq.getCodigo() > 0
+                    && (!(busquedareq.getTotal() == null) && busquedareq.getTotal() >= 0)) {
+                ppid = new ProyectoPreInversionDao();
+                ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
+                p.setMontoComprometido(busquedareq.getTotal());
+                ppid.update(p);
+                model.addAttribute("errorPIP", "Se han guardado los cambios con éxito.");
+                return "success";
+            } else {
+                rd = new RubroDao();
+                List<Rubro> sectores = new ArrayList<>();
+                sectores = rd.listarRubro();
+                model.addAttribute("sectorList", sectores);
+                BeanBusquedaIdentificador busquedareq2 = new BeanBusquedaIdentificador();
+                if (busquedareq.getCodigo() > 0) {
+                    ppid = new ProyectoPreInversionDao();
+                    ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
+                    model.addAttribute("proyecto", p);
+                }
 
-        ppid = new ProyectoPreInversionDao();
-        ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
-        p.setMontoComprometido(busquedareq.getTotal());
-        ppid.update(p);
-        p = ppid.get(p.getCodigo());
-        model.addAttribute("proyecto", p);
+                model.addAttribute("busquedareq", busquedareq2);
+                model.addAttribute("errorPIP", "Faltan datos necesarios.");
 
+                return "reasignarPresupuesto";
+            }
+        }
         return "reasignarPresupuesto";
 
     }
@@ -152,14 +169,26 @@ public class PresupuestoController {
     @RequestMapping(value = "/ejecutarComprometer.htm", method = RequestMethod.POST)
     public String ejecutarComprometer(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
+        if (busquedareq.getComprometer() == null || busquedareq.getComprometer() <= 0 || busquedareq.getCodigo() == 0) {
+            rd = new RubroDao();
 
-        ppid = new ProyectoPreInversionDao();
-        ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
-        
-        GestionProyecto gp = new GestionProyecto(p);
-        gp.ComprometerPresupuesto(busquedareq.getComprometer());
+            List<Rubro> sectores = new ArrayList<>();
+            sectores = rd.listarRubro();
+            model.addAttribute("sectorList", sectores);
+            model.addAttribute("busquedareq", busquedareq);
+            model.addAttribute("errorPIP", "Debe indicar montos para los campos indicados");
+            return "comprometerPresupuesto";
 
-        return "comprometerPresupuesto";
+        } else {
+            ppid = new ProyectoPreInversionDao();
+            ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
+
+            GestionProyecto gp = new GestionProyecto(p);
+            gp.ComprometerPresupuesto(busquedareq.getComprometer());
+            model.addAttribute("errorPIP", "Se han guardado los cambios con éxito.");
+
+        }
+        return "success";
 
     }
 
@@ -174,12 +203,15 @@ public class PresupuestoController {
         ppid = new ProyectoPreInversionDao();
         if (!busquedareq.getIdentificador().isEmpty()) {
             ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
-            if (p.getMontoComprometido() != null && p.getMontoComprometido() > 0) {
-                model.addAttribute("errorPIP", "El proyecto ya tiene presupuesto asignado. Ir a Reasignar Presupuesto");
+            if (p != null) {
+                if (p.getMontoComprometido() != null && p.getMontoComprometido() > 0) {
+                    model.addAttribute("errorPIP", "El proyecto ya tiene presupuesto asignado. Ir a Reasignar Presupuesto");
+                } else {
+                    model.addAttribute("proyecto", p);
+                }
             } else {
-                model.addAttribute("proyecto", p);
+                model.addAttribute("errorPIP", "Debe ingresar un identificador de proyecto válido");
             }
-
         } else {
             model.addAttribute("errorPIP", "El identificador no puede estar vacio");
         }

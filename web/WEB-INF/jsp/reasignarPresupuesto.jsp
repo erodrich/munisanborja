@@ -38,88 +38,75 @@
                     <button type="submit" formaction="${pageContext.request.contextPath}/buscarProyectoIdentificador.htm"  class="btn btn-primary  btn-sm">Buscar</button>
                 </div>
             </form:form>
-
-        </div>
-        <div class="container col-sm-8" style="font-size: small;">
             <div class="row">
-                <div class="card col-6">
-                    <table class="table">
-                        <tr>
-                            <td><h6>Identificador:</h6></td>
-                            <td class="text-right">${proyecto.identificador}</td>
-                        </tr>
-                        <tr>
-                            <td><h6>Comprometido:</h6></td>
-                            <td class="text-right" id="comprometido">
-                                <fmt:formatNumber type="number" 
-                                                  maxFractionDigits="2" 
-                                                  value="${proyecto.montoComprometido}" 
-                                                  />
-
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><h6>Devengado</h6></td>
-                            <td class="text-right" id="devengado">
-                                <fmt:formatNumber type="number" 
-                                                  maxFractionDigits="2" 
-                                                  value="${proyecto.montoDevengado}" 
-                                                  />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><h6>Ejecutado</h6></td>
-                            <td class="text-right" id="ejecutado">
-                                <fmt:formatNumber type="number" 
-                                                  maxFractionDigits="2" 
-                                                  value="${proyecto.montoEjecutado}" 
-                                                  />
-                            </td>
-                        </tr>
-                    </table>
+                <div class="col-md-6">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Identificador:
+                                <span class="float-right">
+                                    ${proyecto.identificador}
+                                </span>
+                            </li>
+                            <li class="list-group-item">Comprometido:
+                                <span class="float-right">
+                                    <fmt:formatNumber type="currency" maxFractionDigits="0" value="${proyecto.montoComprometido}" />
+                                </span>
+                            </li>
+                            <li class="list-group-item">Devengado:
+                                <span class="float-right">
+                                    <fmt:formatNumber type="currency" maxFractionDigits="0" value="${proyecto.montoDevengado}" />
+                                </span>
+                            </li>
+                            <li class="list-group-item">Ejecutado:
+                                <span class="float-right">
+                                    <fmt:formatNumber type="currency" maxFractionDigits="0" value="${proyecto.montoEjecutado}" />
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-6">
                     <form:form method="POST" modelAttribute="busquedareq">
                         <input type="hidden" name="codigo" value="${proyecto.codigo}"/>
                         <div class="form-group">
                             <label for="porcentaje">% a Reasignar</label>
-                            <input type="text" class="form-control" id="porcentaje" name="porcentaje"  />
+                            <input type="number" 
+                                   min="0"
+                                   max="100"
+                                   step="0.01"
+                                   class="form-control" 
+                                   id="porcentaje" 
+                                   name="porcentaje"  />
                         </div>
 
                         <div class="form-group">
                             <label for="sector">Sector</label>
-                            <form:select path="sector" id="select_id">
+                            <form:select path="sector" id="select_id" cssClass="form-control">
                                 <form:options items="${sectorList}" itemValue="codigo" itemLabel="nombre" />
                             </form:select>
                         </div>
                         <div class="form-group">
                             <label for="total">Total</label>
-                            <input type="text" class="form-control" id="total" name="total"  />
+                            <input type="number" step="0.01" class="form-control" id="total" name="total" readonly="true" />
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm" id="calcular" onclick="calc()">Calcular</button>
-                        <button type="submit" formaction="${pageContext.request.contextPath}/ejecutarReasignar.htm" class="btn btn-primary btn-sm" id="reasignar">Reasginar</button>
+                        <button type="button" class="btn btn-info btn-lg" id="calcular" onclick="calc()">Calcular</button>
+                        <button type="submit" formaction="${pageContext.request.contextPath}/ejecutarReasignar.htm" class="btn btn-primary btn-lg" id="reasignar">Reasginar</button>
 
                     </form:form>
                 </div>
-            </div>
+            </div> 
+            <script>
+                function calc() {
+                    //var comp = document.getElementById("comprometido").textContent;
+                    var comp = ${proyecto.montoComprometido}
+                    var porc = document.getElementById("porcentaje").value;
+                    var x = comp - ((comp*porc)/100);
+                   
+                    //resultado = comprometido + (comprometido*porcentage/100)
+                    document.getElementById("total").setAttribute('value', x);
 
-        </div> 
-        <script>
-            function calc() {
-                var comp = document.getElementById("comprometido").textContent;
-                var porc = document.getElementById("porcentaje").value;
-                var ar = comp.split('.');
-                c = '';
-                for (i = 0; i < ar.length; i++) {
-                    c = c.concat(ar[i]);
                 }
-                var x = parseInt(c) + ((parseInt(c) * porc) / 100);
-                //resultado = comprometido + (comprometido*porcentage/100)
-                document.getElementById("total").setAttribute('value', x);
-
-            }
-        </script>
-        <%@include file="includes/footer.jsp" %>
+            </script>
+            <%@include file="includes/footer.jsp" %>
     </body>
 </html>

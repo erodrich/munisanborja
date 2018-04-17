@@ -144,22 +144,28 @@ public class ProcesoController {
         st = new RubroDao();
         rd = new RequerimientoDao();
 
-        Requerimiento req = rd.get(busquedareq.getCodigo());
-        req.setTipo(busquedareq.getSector());
-        
-        RequerimientoEvaluado rEv = new RequerimientoEvaluado();
-        rEv.setImpuestoRenta(busquedareq.getImpuestorenta());
-        rEv.setcManoObraCalificada(busquedareq.getCostomanoobrac());
-        rEv.setcManoObraNoCalificada(busquedareq.getCostomanoobranc());
-        
-        rEv.setFactorManoObraCalificada(busquedareq.getFcostomanoobrac());
-        rEv.setFactorManoObraNoCalificada(busquedareq.getFcostomanoobranc());
-        
-        req.setRequerimientoEvaluado(rEv);
-        rd.update(req);
-        
-        
-        return "redirect:/detalleProcesoReq/" + busquedareq.getCodigo() +".htm";
+        if ((busquedareq.getImpuestorenta() == null || busquedareq.getImpuestorenta() <= 0)
+                || (busquedareq.getCostomanoobrac() == null || busquedareq.getCostomanoobrac() <= 0)
+                || (busquedareq.getCostomanoobranc() == null || busquedareq.getCostomanoobranc() <= 0)) {
+            model.addAttribute("errorPIP", "Debe indicar montos para los campos indicados");
+            
+        } else {
+            Requerimiento req = rd.get(busquedareq.getCodigo());
+            req.setTipo(busquedareq.getSector());
+
+            RequerimientoEvaluado rEv = new RequerimientoEvaluado();
+            rEv.setImpuestoRenta(busquedareq.getImpuestorenta());
+            rEv.setcManoObraCalificada(busquedareq.getCostomanoobrac());
+            rEv.setcManoObraNoCalificada(busquedareq.getCostomanoobranc());
+
+            rEv.setFactorManoObraCalificada(busquedareq.getFcostomanoobrac());
+            rEv.setFactorManoObraNoCalificada(busquedareq.getFcostomanoobranc());
+
+            req.setRequerimientoEvaluado(rEv);
+            rd.update(req);
+            return "redirect:/detalleProcesoReq/" + busquedareq.getCodigo() + ".htm";
+        }
+        return "error";
 
     }
 

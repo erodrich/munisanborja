@@ -89,7 +89,9 @@ public class GestionRequerimiento {
         
         this.unidadFormuladoraValid = false;
         
-        
+        if(r.getUnidadFormuladora() != null){
+            this.unidadFormuladoraValid = true;
+        }
         return this.isUnidadFormuladoraValid() ;
                    
     }

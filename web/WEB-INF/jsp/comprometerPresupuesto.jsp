@@ -17,6 +17,7 @@
         <title>Comprometer Presupuesto</title>
     </head>
     <body>
+
         <div class="container">
             <%@include file="includes/navbar.jsp" %>
             <c:if test="${not empty errorPIP}">
@@ -34,42 +35,56 @@
                     <label for="identificador" class="col-form-label">Identificador:&nbsp;&nbsp;&nbsp;</label>
                     <form:input type="text" class="form-control-sm" path="identificador" placeholder="PXXXXX" />
                     <form:errors path="identificador" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
-                    <button type="submit" formaction="${pageContext.request.contextPath}/buscarProyectoIdNoPresup.htm"  class="btn btn-primary  btn-sm">Buscar</button>
+                    <button type="submit" formaction="${pageContext.request.contextPath}/buscarProyectoIdNoPresup.htm"  class="btn btn-primary btn-sm">Buscar</button>
                 </div>
             </form:form>
-            <c:if test="${not empty proyecto}">
-                <h5>Proyecto: </h5>
-                <h6>${proyecto.requerimiento.nombre}</h6>
-            </c:if>
-            <br />
-        </div>
-        <div class="container col-sm-8" style="font-size: small;">
-            <form:form method="POST" modelAttribute="busquedareq">
-                <div class="row">
-                    <input type="hidden" name="codigo" value="${proyecto.codigo}"/>
-                    <div class="card col-6">
-                        <div class="form-group">
-                            <label for="sector">Sector</label>
-                            <form:select class="form-control" path="sector" id="sector">
-                                <form:options items="${sectorList}" itemValue="codigo" itemLabel="nombre" />
-                            </form:select>
-                        </div>
-                        <div class="form-group">
-                            <label for="comprometer">Monto a comprometer</label>
-                            <input type="number" class="form-control" id="comprometer" name="comprometer"/>
-
-                        </div>
-                    </div>
-                    <div class="card col-6">
-                        <div class="form-group">
-                            <label for="montoDisponible">Monto disponible</label>
-                            <input type="text" class="form-control" id="montoDisponible" name="montoDisponible" readonly="true" />
-                        </div>
-
-                    </div>
-                    <button type="submit" formaction="${pageContext.request.contextPath}/ejecutarComprometer.htm" class="btn btn-primary btn-sm" id="guardar">Guardar</button>
+            <div class="card">
+                <div class="card-body">
+                    <c:if test="${not empty proyecto}">
+                        <h5>Proyecto: </h5>
+                        <h6>${proyecto.requerimiento.nombre}</h6>
+                    </c:if>
                 </div>
-            </form:form>
+                <form:form method="POST" modelAttribute="busquedareq">
+                    <div class="row">
+                        <input type="hidden" name="codigo" value="${proyecto.codigo}"/>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="sector">Sector</label>
+                                    <form:select cssClass="form-control" path="sector" id="sector">
+                                        <form:options items="${sectorList}" itemValue="codigo" itemLabel="nombre" />
+                                    </form:select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="comprometer">Monto a comprometer</label>
+                                    <input type="number" 
+                                           min="0"
+                                           step="0.01"
+                                           class="form-control" 
+                                           id="comprometer" 
+                                           name="comprometer"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="montoDisponible">Monto disponible</label>
+                                    <input type="text" class="form-control" id="montoDisponible" name="montoDisponible" readonly="true" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="text-center">
+                                    <button type="submit" formaction="${pageContext.request.contextPath}/ejecutarComprometer.htm" class="btn btn-primary btn-lg" id="guardar">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form:form>
+            </div>
 
         </div> 
         <script type="text/javascript">

@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,107 +13,187 @@
     </head>
     <body>
 
-         <div class="container">
+        <fmt:setLocale value="es_PE" scope="session"/>
+        <div class="container">
             <%@include file="includes/navbar.jsp" %>
-
-            <form:form action="${action}" method="POST" modelAttribute="requerimiento">
-
-                <div class="card">
-                    <div class="card-body">   
-                        <div class="row">
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="nombrePIP">Identificador:</label>
-                                <input type="text" class="form-control form-control-sm" id="identificador" disabled="true" value="${requerimiento.nombre}" />
+            <!-- Outter Card-->
+            <div class="card">
+                <div class="card-body">
+                    <h2>Detalle de Requerimiento</h2>
+                </div>
+                <!-- Row 1 Presentacion-->
+                <div class="row">
+                    <div class="col-sm-8">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Nombre:
                             </div>
-
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="${requerimiento.nombre}" />
+                            <div class="card-body">
+                                ${requerimiento.nombre}
                             </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="fechaCreacion">Fecha de Creación: </label>
-                                <!-- <fmt:formatDate value="${requerimiento.fechaCreacion}"
-                                                pattern="yyyy-MM-dd"
-                                                var="fechaCreacionF" /> -->
-                                <input type="text" class="form-control form-control-sm" id="fechaCreacion" disabled="true" value="${requerimiento.fechaCreacion}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="elaboradoPor">Elaborado por: </label>
-                                <input type="text" class="form-control form-control-sm" id="elaboradoPor" disabled="true" value="${requerimiento.elaboradoPor}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="fechaAprobacion">Fecha de aprobación: </label>
-                                <input type="text" class="form-control form-control-sm" id="fechaAprobacion" disabled="true" value="${requerimiento.fechaAprobacion}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="aprobadoPor">Aprobado por: </label>
-                                <input type="text" class="form-control form-control-sm" id="aprobadoPor" disabled="true" value="${requerimiento.aprobadoPor}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="fechaRechazo">Fecha de Rechazo: </label>
-                                <input type="text" class="form-control form-control-sm" id="fechaRechazo" disabled="true" value="${requerimiento.fechaRechazo}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="revisadoPor">Revisado por: </label>
-                                <input type="text" class="form-control form-control-sm" id="revisadoPor" disabled="true" value="${requerimiento.revisadoPor}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="objetivo">Objetivo:</label>
-                                <input type="text" class="form-control form-control-sm" id="objetivo" disabled="true" value="${requerimiento.objetivo}" />
-                            </div> 
-
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="problema">Problemática a Resolver:</label>
-                                <input type="text" class="form-control form-control-sm" id="problema" disabled="true" value="${requerimiento.problema}" />
-                            </div>
-
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="analisisSostenibilidad">Analisis Sostenibilidad:</label>
-                                <input type="text" class="form-control form-control-sm" id="analisisSostenibilidad" disabled="true" value="${requerimiento.analisisSostenibilidad}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="fuenteFinanciamiento">Fuente de Financiamiento: </label>
-                                <input type="text" class="form-control form-control-sm" id="fuenteFinanciamiento" disabled="true" value="${requerimiento.fuenteFinanciamiento}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="programaInversion">Cuenta con programa de inversion:</label>
-                                <c:choose>
-                                    <c:when test="${requerimiento.programaInversion}">
-                                        <input type="text" class="form-control form-control-sm" id="programaInversion" disabled="true" value="Si" />
-                                    </c:when>
-                                    <c:otherwise>
-                                        <input type="text" class="form-control form-control-sm" id="programaInversion" disabled="true" value="No" />
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="unidadEjecutora">Unidad Ejecutora:</label>
-                                <input type="text" class="form-control form-control-sm" id="unidadEjecutora" disabled="true" value="${requerimiento.unidadEjecutoraRecomendada}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="costoOperacion">Costo de Operación: </label>
-                                <input type="text" class="form-control form-control-sm" id="costoOperacion" disabled="true" value="${requerimiento.costoOperacion}" />
-                            </div>
-                            <div class="form-group col-xs-10 col-sm-6 col-md-6 col-lg-6">
-                                <label for="costoMantenimiento">Costo de Mantenimiento: </label>
-                                <input type="text" class="form-control form-control-sm" id="costoMantenimiento" disabled="true" value="${requerimiento.costoMantenimiento}" />
-                            </div>
-                            
-                            <br />
-                            <br />
-                            
-                            <a href="${pageContext.request.contextPath}/resumenEvaluacion/${requerimiento.codigo}.htm"><button type="button" class="btn btn-primary  btn-sm">Evaluar Requerimiento</button></a>&nbsp;&nbsp;
-                            <button type="button" class="btn btn-primary btn-sm" onclick="javascript:history.back();">Retornar</button>
-                            
-                            <div class="clearfix"></div>
                         </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Identificador:
+                            </div>
+                            <div class="card-body">
+                                ${requerimiento.identificador}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    </div>        
-                </div>                
+                <!-- Row 2 -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Costo de operación: 
+                                    <span class="float-right">
+                                        <fmt:formatNumber type="currency" maxFractionDigits="0" value="${requerimiento.costoOperacion}" />
+                                    </span> 
+                                </li>
+                                <li class="list-group-item">Costo de Mantenimiento: 
+                                    <span class="float-right">
+                                        <fmt:formatNumber type="currency" maxFractionDigits="0" value="${requerimiento.costoMantenimiento}" />
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Unidad Ejecutora: 
+                                    <span class="float-right">
+                                        ${requerimiento.unidadEjecutoraRecomendada}
+                                    </span> 
+                                </li>
+                                <li class="list-group-item">Programa de Inversión: 
+                                    <span class="float-right">
+                                        <c:choose>
+                                            <c:when test="${requerimiento.programaInversion}">
+                                                Si
+                                            </c:when>
+                                            <c:otherwise>
+                                                No
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </span> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-            </form:form>            
+                <!-- Row 3 Full Width -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Objetivo:
+                            </div>
+                            <div class="card-body">
+                                ${requerimiento.objetivo}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 3 Full Width -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Problemática:
+                            </div>
+                            <div class="card-body">
+                                ${requerimiento.problema}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 3 Full Width -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Análisis de sostenibilidad:
+                            </div>
+                            <div class="card-body">
+                                ${requerimiento.analisisSostenibilidad}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 4 Full Width -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Fuente de Financiamiento:
+                            </div>
+                            <div class="card-body">
+                                ${requerimiento.fuenteFinanciamiento}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        </div>
-            <%@include file="includes/footer.jsp" %>
+                <!-- Row 4 Fechas -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Fecha Aprobación: 
+                                    <span class="float-right">
+                                        <fmt:formatDate pattern = "yyyy-MM-dd" value = "${requerimiento.fechaAprobacion}" />
+                                    </span> 
+                                </li>
+                                <li class="list-group-item">Fecha Creación: 
+                                    <span class="float-right">
+                                        <fmt:formatDate pattern = "yyyy-MM-dd" value = "${requerimiento.fechaCreacion}" />
+                                    </span> 
+                                </li>
+                                <li class="list-group-item">Fecha Rechazo: 
+                                    <span class="float-right">
+                                        <fmt:formatDate pattern = "yyyy-MM-dd" value = "${requerimiento.fechaRechazo}" />
+                                    </span> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Aprobado por: <span class="float-right">${requerimiento.aprobadoPor}</span> </li>
+                                <li class="list-group-item">Elaborado por: <span class="float-right">${requerimiento.elaboradoPor}</span> </li>
+                                <li class="list-group-item">Revisado por: <span class="float-right">${requerimiento.revisadoPor}</span> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 align-self-center">
+                      <a href="${pageContext.request.contextPath}/resumenEvaluacion/${requerimiento.codigo}.htm">
+                        <button type="button" class="btn btn-primary btn-lg">
+                          Evaluar Requerimiento
+                        </button>
+                      </a>
+                      <button type="button" class="btn btn-danger btn-lg" onclick="javascript:history.back();">
+                        Retornar
+                      </button>
+                </div>
+                </div>
+            </div>
+
+        </div>           
+
+        <%@include file="includes/footer.jsp" %>
     </body>
 </html>
