@@ -102,8 +102,11 @@ public class PresupuestoController {
         if (!busquedareq.getIdentificador().isEmpty()) {
             ppid = new ProyectoPreInversionDao();
             ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
-            model.addAttribute("proyecto", p);
-
+            if(p != null){
+                 model.addAttribute("proyecto", p);
+            } else {
+                model.addAttribute("errorPIP", "El identificador no es válido");
+            }
         } else {
             model.addAttribute("errorPIP", "El identificador no puede estar vacio");
         }
@@ -115,19 +118,34 @@ public class PresupuestoController {
     @RequestMapping(value = "/ejecutarReasignar.htm", method = RequestMethod.POST)
     public String ejecutarReasignar(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
-        rd = new RubroDao();
 
-        List<Rubro> sectores = new ArrayList<>();
-        sectores = rd.listarRubro();
-        model.addAttribute("sectorList", sectores);
+        if (!(busquedareq == null)) {
+            if (busquedareq.getCodigo() > 0
+                    && (!(busquedareq.getTotal() == null) && busquedareq.getTotal() >= 0)) {
+                ppid = new ProyectoPreInversionDao();
+                ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
+                p.setMontoComprometido(busquedareq.getTotal());
+                ppid.update(p);
+                model.addAttribute("errorPIP", "Se han guardado los cambios con éxito.");
+                return "success";
+            } else {
+                rd = new RubroDao();
+                List<Rubro> sectores = new ArrayList<>();
+                sectores = rd.listarRubro();
+                model.addAttribute("sectorList", sectores);
+                BeanBusquedaIdentificador busquedareq2 = new BeanBusquedaIdentificador();
+                if (busquedareq.getCodigo() > 0) {
+                    ppid = new ProyectoPreInversionDao();
+                    ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
+                    model.addAttribute("proyecto", p);
+                }
 
-        ppid = new ProyectoPreInversionDao();
-        ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
-        p.setMontoComprometido(busquedareq.getTotal());
-        ppid.update(p);
-        p = ppid.get(p.getCodigo());
-        model.addAttribute("proyecto", p);
+                model.addAttribute("busquedareq", busquedareq2);
+                model.addAttribute("errorPIP", "Faltan datos necesarios.");
 
+                return "reasignarPresupuesto";
+            }
+        }
         return "reasignarPresupuesto";
 
     }
@@ -167,10 +185,11 @@ public class PresupuestoController {
 
             GestionProyecto gp = new GestionProyecto(p);
             gp.ComprometerPresupuesto(busquedareq.getComprometer());
+            model.addAttribute("errorPIP", "Se han guardado los cambios con éxito.");
 
         }
         return "success";
-        
+
     }
 
     @RequestMapping(value = "/buscarProyectoIdNoPresup.htm", method = RequestMethod.POST)

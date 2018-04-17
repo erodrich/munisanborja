@@ -27,17 +27,17 @@
 
             <h2>Listar Informe Técnico - Validar</h2>
             <p>
-            <form:form action="buscarInformeTecnicoValidar.htm" method="POST" modelAttribute="busquedait">
+                <form:form action="buscarInformeTecnicoValidar.htm" method="POST" modelAttribute="busquedait">
 
                 <div class="input-group">
                     <label for="fechaInicio" class="col-form-label">Fecha Inicio:&nbsp;&nbsp;&nbsp;</label>
                     <form:input type="text" class="form-control-sm" path="fechaInicio" placeholder="YYYY-MM-DD" />
                     <form:errors path="fechaInicio" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
-                    <label for="fechaInicio" class="col-form-label">&nbsp;&nbsp;&nbsp;Fecha Final:&nbsp;&nbsp;&nbsp;</label>
+                        <label for="fechaInicio" class="col-form-label">&nbsp;&nbsp;&nbsp;Fecha Final:&nbsp;&nbsp;&nbsp;</label>
                     <form:input type="text" class="form-control-sm" path="fechaFinal" placeholder="YYYY-MM-DD" />
                     <form:errors path="fechaFinal" cssClass="error"><span style="color: red; font-weight: bold; ">Campo requerido</span></form:errors>
-                    <button type="submit" class="btn btn-primary  btn-sm">Buscar</button>
-                </div>
+                        <button type="submit" class="btn btn-primary  btn-sm">Buscar</button>
+                    </div>
 
             </form:form>
 
@@ -58,8 +58,12 @@
                 <tr style="text-align: center;">
                     <td><a href="${pageContext.request.contextPath}/detalleInformeTecnicoValidar/${epip.codigo}.htm">${epip.proyectoPreInversion.identificador}</a></td>
                     <td>${epip.nombre}</td>
-                    <td>${epip.fechaCreacion}</td>
-                    <td>${epip.fechaAprobacion}</td>
+                    <td>
+                        <fmt:formatDate pattern = "yyyy-MM-dd" value = "${epip.fechaCreacion}" />
+                    </td>
+                    <td>
+                        <fmt:formatDate pattern = "yyyy-MM-dd" value = "${epip.fechaAprobacion}" />
+                    </td>
                     <td>${epip.proyectoPreInversion.estadoTramite.nombre}</td>
                 </tr>
             </c:forEach>
