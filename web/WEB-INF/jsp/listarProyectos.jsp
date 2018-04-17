@@ -17,7 +17,7 @@
         <title>Listar Proyectos</title>
     </head>
     <body>
-
+<fmt:setLocale value="es_PE" scope="session"/>
         <div class="container">
             <%@include file="includes/navbar.jsp" %>
             <c:if test="${not empty errorPIP}">
@@ -58,10 +58,10 @@
                         <tr style="text-align: center;">
                             <td>${proyecto.identificador}</td>
                             <td>${proyecto.requerimiento.nombre}</td>
-                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido}" /></td>
-                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
-                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
-                            <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${proyecto.montoComprometido - proyecto.montoDevengado- proyecto.montoEjecutado}" /></td>
+                            <td><fmt:formatNumber type="currency" maxFractionDigits="2" value="${proyecto.montoComprometido}" /></td>
+                            <td><fmt:formatNumber type="currency" maxFractionDigits="2" value="${proyecto.montoDevengado}" /></td>
+                            <td><fmt:formatNumber type="currency" maxFractionDigits="2" value="${proyecto.montoEjecutado}" /></td>
+                            <td><fmt:formatNumber type="currency" maxFractionDigits="2" value="${proyecto.montoComprometido - proyecto.montoDevengado- proyecto.montoEjecutado}" /></td>
                         </tr>
                     </c:forEach>
                 </table>
