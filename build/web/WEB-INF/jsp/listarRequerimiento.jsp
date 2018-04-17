@@ -11,6 +11,7 @@
         <title>Sistema de Gestión Municipal</title>
     </head>
     <body>
+        <fmt:setLocale value="es_PE" scope="session"/>
 
         <div class="container">
             <%@include file="includes/navbar.jsp" %>
@@ -60,8 +61,8 @@
                         <td><a href="${pageContext.request.contextPath}/detalleRequerimiento/${epip.codigo}.htm">${epip.identificador}</a></td>
                         <td>${epip.nombre}</td>
                         <td>${epip.estadoTramite.nombre}</td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.montoInversion.precioMercado}" /></td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${epip.costoOperacion}" /></td>
+                        <td><fmt:formatNumber type="currency" maxFractionDigits="0" value="${epip.montoInversion.precioMercado}" /></td>
+                        <td><fmt:formatNumber type="currency" maxFractionDigits="0" value="${epip.costoOperacion}" /></td>
                         <td>${fn:toUpperCase(epip.ubicacion.departamento)}</td>
                     </tr>
                 </c:forEach>

@@ -17,4 +17,12 @@ body {
   margin-bottom: 20px;
 }
 
+.card{
+    margin: 0.4rem;
+}
+
+html{
+    font-size: 15px;
+}
+
 
