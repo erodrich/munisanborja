@@ -15,7 +15,7 @@ git clone https://github.com/erodrich/munisanborja.git [nombre de carpeta local]
 
 Configuración de base de datos
 En la carpeta lib del proyecto encontrarán el script sql:
-munisanborja-050418.sql
+munisanborja-160418.sql
 Este creará la base de datos "munisanborja", deberán eliminar o renombrar cualquier otra bd con el mismo nombre.
 
 Validar que se cuenta con un servidor Glassfish. En este caso, Netbeans trae un por defecto siempre que se haya seleccionado en el momento de la instalación.
