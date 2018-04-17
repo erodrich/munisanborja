@@ -178,10 +178,10 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <button type="button" class="btn btn-primary btn-sm" onclick="javascript:history.back();">Retornar</button>
-                    </div>
+                <div class="col-md-4 align-self-center">
+                      <button type="button" class="btn btn-danger btn-lg" onclick="javascript:history.back();">
+                        Retornar
+                      </button>
                 </div>
             </div>
         </div>

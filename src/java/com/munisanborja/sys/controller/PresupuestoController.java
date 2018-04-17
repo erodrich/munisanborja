@@ -85,7 +85,6 @@ public class PresupuestoController {
         BeanBusquedaIdentificador busquedareq = new BeanBusquedaIdentificador();
 
         model.addAttribute("busquedareq", busquedareq);
-        
 
         return "reasignarPresupuesto";
 
@@ -152,15 +151,26 @@ public class PresupuestoController {
     @RequestMapping(value = "/ejecutarComprometer.htm", method = RequestMethod.POST)
     public String ejecutarComprometer(@ModelAttribute("busquedareq") BeanBusquedaIdentificador busquedareq,
             BindingResult result, Model model) {
+        if (busquedareq.getComprometer() == null || busquedareq.getComprometer() <= 0 || busquedareq.getCodigo() == 0) {
+            rd = new RubroDao();
 
-        ppid = new ProyectoPreInversionDao();
-        ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
+            List<Rubro> sectores = new ArrayList<>();
+            sectores = rd.listarRubro();
+            model.addAttribute("sectorList", sectores);
+            model.addAttribute("busquedareq", busquedareq);
+            model.addAttribute("errorPIP", "Debe indicar montos para los campos indicados");
+            return "comprometerPresupuesto";
+
+        } else {
+            ppid = new ProyectoPreInversionDao();
+            ProyectoPreInversion p = ppid.get(busquedareq.getCodigo());
+
+            GestionProyecto gp = new GestionProyecto(p);
+            gp.ComprometerPresupuesto(busquedareq.getComprometer());
+
+        }
+        return "success";
         
-        GestionProyecto gp = new GestionProyecto(p);
-        gp.ComprometerPresupuesto(busquedareq.getComprometer());
-
-        return "comprometerPresupuesto";
-
     }
 
     @RequestMapping(value = "/buscarProyectoIdNoPresup.htm", method = RequestMethod.POST)
@@ -174,12 +184,15 @@ public class PresupuestoController {
         ppid = new ProyectoPreInversionDao();
         if (!busquedareq.getIdentificador().isEmpty()) {
             ProyectoPreInversion p = ppid.get(busquedareq.getIdentificador());
-            if (p.getMontoComprometido() != null && p.getMontoComprometido() > 0) {
-                model.addAttribute("errorPIP", "El proyecto ya tiene presupuesto asignado. Ir a Reasignar Presupuesto");
+            if (p != null) {
+                if (p.getMontoComprometido() != null && p.getMontoComprometido() > 0) {
+                    model.addAttribute("errorPIP", "El proyecto ya tiene presupuesto asignado. Ir a Reasignar Presupuesto");
+                } else {
+                    model.addAttribute("proyecto", p);
+                }
             } else {
-                model.addAttribute("proyecto", p);
+                model.addAttribute("errorPIP", "Debe ingresar un identificador de proyecto válido");
             }
-
         } else {
             model.addAttribute("errorPIP", "El identificador no puede estar vacio");
         }

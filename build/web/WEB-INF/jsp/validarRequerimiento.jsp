@@ -17,6 +17,7 @@
         <title>Validar Requerimiento</title>
     </head>
     <body>
+        <fmt:setLocale value="es_PE" scope="session"/>
          <div class="container">
             <%@include file="includes/navbar.jsp" %>
             <c:if test="${not empty errorPIP}">
@@ -55,8 +56,8 @@
                             <td><a href="${pageContext.request.contextPath}/evaluacionRequerimiento/${requerimiento.codigo}.htm">${requerimiento.identificador}</a></td>
                         <td>${requerimiento.nombre}</td>
                         <td>${requerimiento.estadoTramite.nombre}</td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${requerimiento.montoInversion.precioMercado}" /></td>
-                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${requerimiento.costoOperacion}" /></td>
+                        <td><fmt:formatNumber type="currency" maxFractionDigits="0" value="${requerimiento.montoInversion.precioMercado}" /></td>
+                        <td><fmt:formatNumber type="currency" maxFractionDigits="0" value="${requerimiento.costoOperacion}" /></td>
                         <td>${fn:toUpperCase(requerimiento.ubicacion.departamento)}</td>
                     </tr>
                 </table>
