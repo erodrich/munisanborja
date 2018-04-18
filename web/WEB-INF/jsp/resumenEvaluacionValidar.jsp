@@ -11,131 +11,164 @@
         <title>Evaluacion</title>
     </head>
     <body>
-
         <div class="container">
+            <fmt:setLocale value="es_PE" scope="session"/>
             <%@include file="includes/navbar.jsp" %>
-            <form:form action="${action}" method="POST" modelAttribute="requerimiento">
 
-                <div class="card">
-                    <div class="card-body">   
-                        <div class="row">
-                            <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                <label for="nombrePIP">Mano de Obra no Calificada: </label>
-                                <input type="text" class="form-control form-control-sm" id="identificador" disabled="true" value="314165" />
-
-                                <c:choose>
-                                    <c:when test="${gr.manoobranocalificadaValid}">
-                                        &nbsp;
-                                    </c:when>
-                                    <c:otherwise>
-                                        <label for="nombre">&nbsp;Nombre no corresponde</label>
-                                    </c:otherwise>
-                                </c:choose>                                  
+            <div class="card">
+                <div class="card-body">   
+                    <h2>Resultado de Evaluación</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Mano de Obra no Calificada::
                             </div>
-
-                            <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2">
-                                <br />
-                                <c:choose>
-                                    <c:when test="${gr.manoobranocalificadaValid}">
-                                        <img src="${pageContext.request.contextPath}/images/check.png" alt="" width="16"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="${pageContext.request.contextPath}/images/cancel.png" alt="" width="16"/>
-                                    </c:otherwise>
-                                </c:choose>                                
-                            </div>                            
-
-                            <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                <label for="nombre">Tasa de Descuento Social:</label>
-                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="22088" />
-
-                                <c:choose>
-                                    <c:when test="${gr.tasadescuentoValid}">
-                                        &nbsp;
-                                    </c:when>
-                                    <c:otherwise>
-                                        <label for="nombre">&nbsp;Objetivo no corresponde</label>
-                                    </c:otherwise>
-                                </c:choose>                                 
-                            </div>
-
-                            <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2">
-                                <br />
-                                <c:choose>
-                                    <c:when test="${gr.tasadescuentoValid}">
-                                        <img src="${pageContext.request.contextPath}/images/check.png" alt="" width="16"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="${pageContext.request.contextPath}/images/cancel.png" alt="" width="16"/>
-                                    </c:otherwise>
-                                </c:choose>                                  
-                            </div>                             
-
-                            <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                <label for="nombre">Precio Social:</label>
-                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="34577" />
-
-                                <c:choose>
-                                    <c:when test="${gr.precioSocialValid}">
-                                        &nbsp;
-                                    </c:when>
-                                    <c:otherwise>
-                                        <label for="nombre">&nbsp;Problema no corresponde</label>
-                                    </c:otherwise>
-                                </c:choose>                                  
-                            </div>   
-
-                            <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2">
-                                <br />
-                                <c:choose>
-                                    <c:when test="${gr.precioSocialValid}">
-                                        <img src="${pageContext.request.contextPath}/images/check.png" alt="" width="16"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="${pageContext.request.contextPath}/images/cancel.png" alt="" width="16"/>
-                                    </c:otherwise>
-                                </c:choose>                                  
-                            </div>                               
-
-                            <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                <label for="nombre">Valor Social del Tiempo:</label>
-                                <input type="text" class="form-control form-control-sm" id="nombre" disabled="true" value="76001" />
-
-                                <c:choose>
-                                    <c:when test="${gr.valorSocialTiempoValid}">
-                                        &nbsp;
-                                    </c:when>
-                                    <c:otherwise>
-                                        <label for="nombre">&nbsp;Ubicación no corresponde al distrito</label>
-                                    </c:otherwise>
-                                </c:choose> 
+                            <div class="card-body">
+                                <fmt:formatNumber type="currency" maxFractionDigits="0" value="31255" />
+                                
+                                <div class="alert-danger">
+                                    <c:choose>
+                                        <c:when test="${gr.manoobranocalificadaValid}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <label for="nombre">&nbsp;Mano de obra no corresponde</label>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
 
                             </div>
-
-                            <div class="form-group col-xs-10 col-sm-2 col-md-2 col-lg-2">
-                                <br />
-                                <c:choose>
-                                    <c:when test="${gr.valorSocialTiempoValid}">
-                                        <img src="${pageContext.request.contextPath}/images/check.png" alt="" width="16"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="${pageContext.request.contextPath}/images/cancel.png" alt="" width="16"/>
-                                    </c:otherwise>
-                                </c:choose>                                  
-                            </div>                                                      
-
-                            <div class="clearfix"></div>
                         </div>
+                    </div>
+                    <div class="col-sm-2 align-self-center">
+                        <!-- Inner Card-->
+                        <c:choose>
+                            <c:when test="${gr.manoobranocalificadaValid}">
+                                <img src="${pageContext.request.contextPath}/images/check.png" alt="" width="16"/>
+                            </c:when>
+                            <c:otherwise>
+                                <img src="${pageContext.request.contextPath}/images/cancel.png" alt="" width="16"/>
+                            </c:otherwise>
+                        </c:choose>   
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Tasa de Descuento Social:
+                            </div>
+                            <div class="card-body">
+                                <fmt:formatNumber type="currency" maxFractionDigits="0" value="22088" />
+                                
+                                <div class="alert-danger">
+                                    <c:choose>
+                                        <c:when test="${gr.tasadescuentoValid}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <label for="nombre">&nbsp;La tasa no corresponde</label>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
 
-                    </div>        
-                </div>                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 align-self-center">
+                        <!-- Inner Card-->
+                        <c:choose>
+                            <c:when test="${gr.tasadescuentoValid}">
+                                <img src="${pageContext.request.contextPath}/images/check.png" alt="" width="16"/>
+                            </c:when>
+                            <c:otherwise>
+                                <img src="${pageContext.request.contextPath}/images/cancel.png" alt="" width="16"/>
+                            </c:otherwise>
+                        </c:choose>   
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Precio Social:
+                            </div>
+                            <div class="card-body">
+                                <fmt:formatNumber type="currency" maxFractionDigits="0" value="34577" />
+                                <div class="alert-danger">
+                                    <c:choose>
+                                        <c:when test="${gr.precioSocialValid}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <label for="nombre">&nbsp;Precio social no corresponde</label>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
 
-                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 align-self-center">
+                        <!-- Inner Card-->
+                        <c:choose>
+                            <c:when test="${gr.precioSocialValid}">
+                                <img src="${pageContext.request.contextPath}/images/check.png" alt="" width="16"/>
+                            </c:when>
+                            <c:otherwise>
+                                <img src="${pageContext.request.contextPath}/images/cancel.png" alt="" width="16"/>
+                            </c:otherwise>
+                        </c:choose>   
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <!-- Inner Card-->
+                        <div class="card">
+                            <div class="card-header">
+                                Valor social del tiempo:
+                            </div>
+                            <div class="card-body">
+                                <fmt:formatNumber type="currency" maxFractionDigits="0" value="76001" />
+                                <div class="alert-danger">
+                                    <c:choose>
+                                        <c:when test="${gr.valorSocialTiempoValid}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <label for="nombre">Valor social del tiempo no cumple</label>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
 
-                <button type="button" class="btn btn-primary btn-sm" onclick="javascript:history.back();">Retornar</button>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 align-self-center">
+                        <!-- Inner Card-->
+                        <c:choose>
+                            <c:when test="${gr.valorSocialTiempoValid}">
+                                <img src="${pageContext.request.contextPath}/images/check.png" alt="" width="16"/>
+                            </c:when>
+                            <c:otherwise>
+                                <img src="${pageContext.request.contextPath}/images/cancel.png" alt="" width="16"/>
+                            </c:otherwise>
+                        </c:choose>   
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-3 text-center">
+                        <button type="button" class="btn btn-danger btn-lg" onclick="javascript:history.back();">
+                            Retornar
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-            </form:form>     
-        </div>
+        </div>   
+
+
         <%@include file="includes/footer.jsp" %>
     </body>
 </html>

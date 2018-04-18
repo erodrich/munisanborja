@@ -14,8 +14,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Requerimientos</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown09">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/listarRequerimiento.htm">Listar</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Validar</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/listarRequerimiento.htm">Listar Requerimientos</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Valida Requerimientosr</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/listarProceso.htm">Listar Evaluar Proceso</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/evaluarProceso.htm">Evaluar Proceso</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/listarInformeTecnico.htm">Listar Informe Técnico </a>
@@ -25,14 +25,14 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Proyectos</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown09">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/listarProyectos.htm">Listar</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/listarProyectos.htm">Listar Proyectos</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Presupuestos</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown09">
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/comprometerPresupuesto.htm">Comprometer partida</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/reasignarPresupuesto.htm">Reasignar presupuesto</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/reasignarPresupuesto.htm">Reasignar partida presupuestal</a>
                 </div>
             </li>
         </ul>
