@@ -127,6 +127,7 @@ public class InformeTecnicoController {
 
     public String buscarInformeTecnicoValidar(@ModelAttribute("busquedait") BeanBusquedaFecha busquedait,
             BindingResult result, Model model) {
+        it = new InformeTecnicoDao();
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
