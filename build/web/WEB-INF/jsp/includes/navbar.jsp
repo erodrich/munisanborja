@@ -15,7 +15,7 @@
                 <a class="nav-link dropdown-toggle" href="#"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Requerimientos</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown09">
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/listarRequerimiento.htm">Listar Requerimientos</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Valida Requerimientosr</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/validarRequerimiento.htm">Valida Requerimientos</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/listarProceso.htm">Listar Evaluar Proceso</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/evaluarProceso.htm">Evaluar Proceso</a>
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/listarInformeTecnico.htm">Listar Informe Técnico </a>
